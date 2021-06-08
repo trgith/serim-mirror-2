@@ -131,8 +131,9 @@ Route::group(['middleware' => ['get.menu']], function () {
 
     });
 
-    Route::group(['middleware' => ['role:organcontrolmiddleware']], function(){
-
+    Route::group(['middleware' => ['role:organo_control']], function(){
+        Route::get('/asignacion_usuarios', 'OrganControlController@assignmentUserView');
+        Route::post('registrar_usuario', 'OrganControlController@storUserOrganoControl');
     });
 
     Route::group(['middleware' => ['role:publicservermiddleware']], function(){

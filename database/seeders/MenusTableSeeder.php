@@ -144,6 +144,7 @@ class MenusTableSeeder extends Seeder
         $this->endDropdown();
         $this->insertLink('guest', 'Login', '/login', 'cil-account-logout');
 
+
         /* Create top menu */
         DB::table('menulist')->insert([
             'name' => 'top menu'

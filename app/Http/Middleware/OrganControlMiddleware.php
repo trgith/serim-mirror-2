@@ -18,11 +18,9 @@ class OrganControlMiddleware
     {
 
         $roles = explode(',', $request->user()->menuroles);
+
         if ( ! in_array('organo_control', $roles) ) {
             return abort( 401 );
-        } else {
-
         }
-        return $next($request);
     }
 }
