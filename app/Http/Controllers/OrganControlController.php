@@ -7,9 +7,11 @@ use DB;
 use Exception;
 use Carbon\Carbon;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use App\Http\Requests\OrganRequest;
+use Illuminate\Support\Facades\Hash;
 
 class OrganControlController extends Controller
 {
@@ -27,11 +29,10 @@ class OrganControlController extends Controller
      */
     public function assignmentUserView()
     {
-
         $getRoles = DB::table('roles')->select('name')->get();
         $roles = collect([str_replace("_"," ",$getRoles[6]->name),
-                        str_replace("_"," ",$getRoles[7]->name),
-                            str_replace("_"," ",$getRoles[8]->name)]);
+                    str_replace("_"," ",$getRoles[7]->name),
+                    str_replace("_"," ",$getRoles[8]->name)]);
         return view('dashboard.organ_control.module_users.users', ['roles' => $roles]);
     }
 
@@ -46,7 +47,7 @@ class OrganControlController extends Controller
                 'email_verified_at' => now(),
                 'password' => Hash::make($request->input('password')),
                 'remember_token' => Str::random(10),
-                'action_user' => $request->input('action_user'),
+                'action_user' =>  $request->input('action_user'),
                 'menuroles' => $request->input('menuroles')
             ]);
             $user->assignRole('organo_control');

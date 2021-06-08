@@ -16,17 +16,21 @@
                         <div class="users__form">
                             <div class="form-group">
                                 <label for="" class="forms__label">Nombre Completo</label>
-                                <input type="text" class="form-control forms__input" id="users_name_complete" placeholder="Ingresa Nombre">
+                                <input type="text" class="form-control forms__input" id="users_name_complete" placeholder="Ingresa Nombre"  onkeypress="cleanMessageName()">
+                                <p id="error_name"></p>
                             </div>
 
                             <div class="form-group">
                                 <label for="" class="forms__label">Correo Electronico</label>
-                                <input type="email" class="form-control forms__input" id="users_email" placeholder="Ingresa un correo electronico">
+                                <input type="email" class="form-control forms__input" id="users_email" placeholder="Ingresa un correo electronico"  onkeypress="cleanMessageEmail()">
+                                <p id="error_email"></p>
+
                             </div>
 
                             <div class="form-group">
                                 <label for="" class="forms__label">Contraseña</label>
-                                <input type="password" class="form-control forms__input" id="users_passsword" placeholder="Ingresa una contraseña">
+                                <input type="password" class="form-control forms__input" id="users_password" placeholder="Ingresa una contraseña"  onkeypress="cleanMessagePassword()">
+                                <p id="error_password"></p>
                             </div>
                         </div>
                     </div>
@@ -61,17 +65,17 @@
 
                         <hr>
 
-                        <div class="forms__casedependenci">
+                        <div class="forms__casedependency">
                             <div class="form-group w-100">
-                            <label for="exampleFormControlSelect1" class="forms__label forms__especification">Especifica el rol</label>
+                            <label for="" class="forms__label forms__especification">Especifica el rol</label>
 
-                            <select class="form-control" id="menuroles">
-                                <option value="" selected disabled>Seleccion un rol</option>
+                            <select class="form-control" id="menuroles" onchange="cleanMessageRoles()">
+                                <option value="" selected disabled>Selecciona un rol</option>
                                 @foreach($roles as $rol)
-                                    <option value="{{$rol->name}}"{{old('rol_name') == $rol->name? 'selected':''}}>{{ $rol->name }}</option>
+                                    <option value="{{$rol}}" {{old('rol_name') == $rol? 'selected':''}}>{{ $rol }}</option>
                                 @endforeach
                             </select>
-
+                            <p id="error_menuroles"></p>
                             </div>
                         </div>
                         {{-- <div class="forms__checks">
