@@ -16,6 +16,7 @@ class MenusTableSeeder extends Seeder
     private $joinData = array();
     private $adminRole = null;
     private $userRole = null;
+    private $organ_control = null;
     private $subFolder = '';
 
     public function join($roles, $menusId){
@@ -129,10 +130,13 @@ class MenusTableSeeder extends Seeder
         /* Get roles */
         $this->adminRole = Role::where('name' , '=' , 'admin' )->first();
         $this->userRole = Role::where('name', '=', 'user' )->first();
+        $this->organ_control = Role::where('name', '=', 'organo_control')->first();
+
         /* Create Sidebar menu */
         DB::table('menulist')->insert([
             'name' => 'sidebar menu'
         ]);
+
         $this->menuId = DB::getPdo()->lastInsertId();  //set menuId
         //$this->insertLink('guest,user,admin', 'Dashboard', '/', 'cil-speedometer');
         $this->beginDropdown('admin', 'Configuración', 'cil-calculator');
@@ -147,8 +151,12 @@ class MenusTableSeeder extends Seeder
 
         /* Create top menu */
         DB::table('menulist')->insert([
-            'name' => 'top menu'
+            'name' => 'sidebar menu'
         ]);
+
+        /**
+         * !Menú Administrador
+         */
         $this->menuId = DB::getPdo()->lastInsertId();  //set menuId
         $this->beginDropdown('guest,user,admin', 'Pages');
         $id = $this->insertLink('guest,user,admin', 'Dashboard',    '/');
@@ -163,6 +171,20 @@ class MenusTableSeeder extends Seeder
         $id = $this->insertLink('admin', 'Media',                   '/media');
         $id = $this->insertLink('admin', 'BREAD',                   '/bread');
         $this->endDropdown();
+
+        /**
+         * !Menú Organo Control
+         */
+        $id = $this->insertTitle('organo_control', 'MÓDULO DE USUARIOS');
+        $id = $this->insertLink('organo_control', 'Asignación de Usuarios', '/asignacion_usuarios', 'cil-user');
+        $id = $this->insertLink('organo_control', 'Gestión de Testigos', '/gestion_testigos', ' cil-people');
+        $id = $this->insertTitle('organo_control', ' MÓDULO DE MUNICIPIOS');
+        $id = $this->insertLink('organo_control', 'Gestión de Municipios', '/gestion_municipios', 'cil-institution');
+        $id = $this->insertTitle('organo_control', 'MÓDULO DE DEPENDENCIAS');
+        $id = $this->insertLink('organo_control', 'Gestión de Dependencias', '/gestion_dependencias', 'cil-home');
+        $id = $this->insertLink('organo_control', 'Gestión de Empleados', '/gestion_empleados', 'cil-contact');
+        $id = $this->insertTitle('organo_control', 'MÓDULO DE ANEXOS');
+        $id = $this->insertLink('organo_control', 'Anexos', '/anexos', 'cil-file');
 
         $this->joinAllByTransaction(); ///   <===== Must by use on end of this seeder
     }

@@ -24,10 +24,11 @@ function registerUsers() {
         }
     });
 
+
     var name = $('#users_name_complete').val();
     var email = $('#users_email').val();
     var password = $('#users_password').val();
-    var action_user = $('#users_delivery').val();
+    var action_user = $('input[name="au"]:checked').val();
     var menuroles = $('#menuroles').val();
 
     $.ajax({
@@ -38,11 +39,22 @@ function registerUsers() {
 
         success: function(data) {
             if (data) {
-                $('#success').text("Usuario registrado correctamente");
+
+                console.log(data);
+                $("#success").html(data.message).css("display", "flex");
+                $("#form_buttom_users").prop("disabled", true);
 
                 setTimeout(function() {
-                    $("#success").css('display', 'none');
+                    $("#success").css("display", "none");
+                    $("#form_buttom_users").prop("disabled", false);
                 }, 4000);
+
+
+                $("#users_name_complete").val('');
+                $("#users_email").val('');
+                $("#users_password").val('');
+                $("#users_delivery").val('');
+                $("#menuroles").val('');
             } else {
                 console.log("Ha ocurrido un error con el servidor");
             }
@@ -53,9 +65,16 @@ function registerUsers() {
             $("#error_email").text(response.responseJSON.errors.email);
             $("#error_password").text(response.responseJSON.errors.password);
             $("#error_menuroles").text(response.responseJSON.errors.menuroles);
+            $("#error_actions").text(response.responseJSON.errors.action_user);
+
         }
     });
 }
+
+/* function getValueRadioButtoms() {
+    var radioButtom = document.querySelector('input[name="au"]:checked').value;
+    var canValueButtom = radioButtom ? radioButtom.input : "Me encuentro vacio";
+} */
 
 function cleanMessageName() {
     $("#error_name").html("");

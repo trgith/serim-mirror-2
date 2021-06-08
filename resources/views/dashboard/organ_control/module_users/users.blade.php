@@ -48,20 +48,21 @@
 
                         <div class="forms__checks">
                             <div class="form-group pr-5">
-                                <input type="radio" class="form-check-input" id="users_delivery">
+                                <input type="radio" class="form-check-input" name="au" id="users_delivery" value="delivery">
                                 <label class="form-check-label forms__label">Entrega</label>
                             </div>
 
                             <div class="form-group pr-5">
-                                <input type="radio" class="form-check-input" id="users_receives">
+                                <input type="radio" class="form-check-input" name="au" id="users_receives" value="receives">
                                 <label class="form-check-label forms__label">Recibe</label>
                             </div>
 
                             <div class="form-group ">
-                                <input type="radio" class="form-check-input" id="not_apply">
+                                <input type="radio" class="form-check-input" name="au" id="not_apply" value="not_apply">
                                 <label class="form-check-label forms__label">No Aplica</label>
                             </div>
                         </div>
+                        <p id="error_actions"></p>
 
                         <hr>
 
@@ -78,31 +79,14 @@
                             <p id="error_menuroles"></p>
                             </div>
                         </div>
-                        {{-- <div class="forms__checks">
-                            <div class="form-group pr-5">
-                                <input type="radio" class="form-check-input" id="users_municipality" name="pd" value="municipality">
-                                <label class="form-check-label forms__label">Presidente Municipal</label>
-                            </div>
-
-                            <div class="form-group">
-                                <input type="radio" class="form-check-input" id="users_dependency" name="pd" value="dependency">
-                                <label class="form-check-label forms__label">Titular de Dependencia</label>
-                            </div>
-                        </div>
-
-
-                        <div class="forms__casemunicipality">
-                            <div class="form-group w-100">
-                                <label for="exampleFormControlSelect1" class="forms__label">Selecciona un municipio</label>
-                                <select class="form-control" id="exampleFormControlSelect1">
-                                    <option>1</option>
-                                    <option>2</option>
-                                </select>
-                            </div>
-                        </div> --}}
 
                         <hr class="hr__bottom">
-                        <button class="btn btn-primary form__buttom" onclick="registerUsers()">Registrar usuario</button>
+                        <button class="btn btn-primary form__buttom" id="form_buttom_users" onclick="registerUsers()">Registrar usuario</button>
+
+                        <br>
+                            <div id="success"></div>
+                        <br>
+
                     </div>
                 </div>
             </div>

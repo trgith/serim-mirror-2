@@ -60,6 +60,24 @@ class UsersAndNotesSeeder extends Seeder
             'hierarchy' => 6
         ]);
 
+        $witnessRole = Role::create(['name' => 'presidente_municipal']);
+        RoleHierarchy::create([
+            'role_id' => $witnessRole->id,
+            'hierarchy' => 7
+        ]);
+
+        $witnessRole = Role::create(['name' => 'titular_dependencia']);
+        RoleHierarchy::create([
+            'role_id' => $witnessRole->id,
+            'hierarchy' => 8
+        ]);
+
+        $witnessRole = Role::create(['name' => 'estructura_organica']);
+        RoleHierarchy::create([
+            'role_id' => $witnessRole->id,
+            'hierarchy' => 9
+        ]);
+
         /*  insert status  */
         DB::table('status')->insert([
             'name' => 'ongoing',

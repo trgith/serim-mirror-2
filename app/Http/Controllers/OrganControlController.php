@@ -30,9 +30,9 @@ class OrganControlController extends Controller
     public function assignmentUserView()
     {
         $getRoles = DB::table('roles')->select('name')->get();
-        $roles = collect([str_replace("_"," ",$getRoles[6]->name),
-                    str_replace("_"," ",$getRoles[7]->name),
-                    str_replace("_"," ",$getRoles[8]->name)]);
+        $roles = collect([str_replace(" ","_",$getRoles[6]->name),
+                    str_replace(" ","_",$getRoles[7]->name),
+                    str_replace(" ","_",$getRoles[8]->name)]);
         return view('dashboard.organ_control.module_users.users', ['roles' => $roles]);
     }
 
@@ -48,7 +48,7 @@ class OrganControlController extends Controller
                 'password' => Hash::make($request->input('password')),
                 'remember_token' => Str::random(10),
                 'action_user' =>  $request->input('action_user'),
-                'menuroles' => $request->input('menuroles')
+                'menuroles' => 'user,'.$request->input('menuroles')
             ]);
             $user->assignRole('organo_control');
             $user->assignRole('user');
@@ -56,7 +56,7 @@ class OrganControlController extends Controller
             return response()->json(['status' => true, 'data' => $user, 'message' => 'Usuario registrado correctamente']);
         }catch(Exception $e) {
             DB::rollback();
-            return reponse()->jsonn(['status' => false, 'message' => 'Ha ocurrido un error al registrar el usuario']);
+            return response()->json(['status' => false, 'message' => 'Ha ocurrido un error al registrar el usuario', $e]);
         }
 
     }
