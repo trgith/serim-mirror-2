@@ -134,10 +134,27 @@ Route::group(['middleware' => ['get.menu']], function () {
     Route::group(['middleware' => ['role:organo_control']], function(){
         Route::get('/asignacion_usuarios', 'OrganControlController@assignmentUserView');
         Route::post('registrar_usuario', 'OrganControlController@storUserOrganoControl');
+        Route::get('/lista_usuarios', 'OrganControlController@getUsersRegistered');
+        Route::get('/editar_usuario/{id}', 'OrganControlController@viewEditUserRegistered');
+        Route::put('/actualizar_usuario/{id}', 'OrganControlController@updateUserRegistered');
+        Route::delete('/eliminar_usuario/{id}', 'OrganControlController@deleteUserRegister');
     });
 
-    Route::group(['middleware' => ['role:publicservermiddleware']], function(){
+
+    Route::group(['middleware' => ['role:presidente']], function(){
+
 
     });
+
+
+    Route::group(['middleware' => ['role:titular']], function(){
+
+    });
+
+
+    Route::group(['middleware' => ['role:estructura_organica']], function(){
+
+    });
+
 
 });

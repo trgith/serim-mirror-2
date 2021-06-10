@@ -20541,3 +20541,8 @@ body {
     margin-left: auto;
     font: 900 1rem 'Montserrat', sans-serif
 }
+
+.modal__danger {
+    background-color: #d81e50;
+    color: #ffffff;
+}

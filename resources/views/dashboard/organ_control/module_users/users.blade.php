@@ -4,7 +4,6 @@
 
 <div class="container-fluid">
     <div class="animated fadeIn">
-
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
                 <div class="card">
@@ -110,21 +109,44 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Row 1 Data 1</td>
-                                    <td>Row 1 Data 2</td>
-                                    <td>Row 1 Data 1</td>
-                                    <td>Row 1 Data 2</td>
-                                    <td>Row 1 Data 1</td>
-                                </tr>
-                                <tr>
+                                @foreach ($users as $user)
+                                    <tr>
+                                        <td>{{$user->name}}</td>
+                                        <td>{{$user->email}}</td>
+                                        <td>{{$user->action_user}}</td>
+                                        <td>{{$user->menuroles}}</td>
+                                        <td>
+                                            <a class="btn btn-primary" href="/editar_usuario/{{$user->id}}"><div class="cil-color-border"></div></a>
+                                            <a class="btn btn-danger" href="javascript:;" data-toggle="modal" data-target="#myModal-{{$user->id}}"><div class="cil-trash"></div></a>
+                                        </td>
+                                    </tr>
 
-                                    <td>Row 1 Data 1</td>
-                                    <td>Row 1 Data 2</td>
-                                    <td>Row 1 Data 1</td>
-                                    <td>Row 1 Data 2</td>
-                                    <td>Row 1 Data 1</td>
-                                </tr>
+                                    <!-- Modal -->
+                                    <div class="modal modal-centered fade" id="myModal-{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-dismiss="modal" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                          <div class="modal-content">
+
+                                            <div class="modal-header modal__danger">
+                                              <h4 class="modal-title">!Advertencia</h4>
+                                              <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                              <h4>¿Desea eliminar este usuario?</h4>
+                                              <span>Si acepta, tenga en cuenta que una vez efectuado los cambios no se podran revertir</span>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cerrar</button>
+                                                <button id="modal_eliminar" class="btn btn-danger" type="button" onclick="deleteUser({{$user->id}})">Eliminar</button>
+                                            </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Modal -->
+
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -132,8 +154,12 @@
             </div>
         </div>
     </div>
-</div>
 
+
+
+
+
+</div>
 @endsection
 
 
@@ -141,4 +167,10 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
     <script src="{{asset('assets/js/organ_control/assigned_users.js')}}"></script>
+    <script>
+         $('.addAttr').click(function() {
+        var id = $(this).data('id');
+            $('#id').val(id);
+        } );
+    </script>
 @endsection
