@@ -16,7 +16,6 @@ class Proceedings extends Migration
         Schema::create('proceedings', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('employee_id');
-            $table->unsignedBigInteger('state_id');
             $table->unsignedBigInteger('record_id');
             $table->string('hour',20);
             $table->string('minutes',20);
@@ -27,7 +26,6 @@ class Proceedings extends Migration
         });
         Schema::table('proceedings', function (Blueprint $table) {
             $table->foreign('employee_id')->references('id')->on('employees');
-            $table->foreign('state_id')->references('id')->on('states');
             $table->foreign('record_id')->references('id')->on('records');
         });
     }

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Annexed extends Migration
+class AnnexedCatalog extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,20 @@ class Annexed extends Migration
      */
     public function up()
     {
-        Schema::create('annexed', function (Blueprint $table) {
+        Schema::create('annexed_catalog', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('annexed_id');
+            $table->unsignedBigInteger('area_id');
+            $table->string('name', 150);
+            $table->string('number',100);
+            $table->smallInteger('status');
             $table->timestamps();
         });
 
-        Schema::table('annexed', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users');
+        Schema::table('annexed_catalog', function(Blueprint $table) {
             $table->foreign('annexed_id')->references('id')->on('annexed');
+            $table->foreign('area_id')->references('id')->on('area');
         });
-
     }
 
     /**
@@ -34,6 +36,6 @@ class Annexed extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('annexed');
+        Schema::dropIfExists('annexed_catalog');
     }
 }

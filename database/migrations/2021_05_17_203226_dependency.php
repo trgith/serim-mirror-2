@@ -15,7 +15,7 @@ class Dependency extends Migration
     {
         Schema::create('dependencies', function (Blueprint $table) {
             $table->id();
-            $table->string('name_dependecy',150);
+            $table->string('name_dependency',150);
             $table->string('address',150)->nullable();
             $table->string('exterior_number',5)->nullable();
             $table->string('interior_number',5)->nullable();

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Annexed extends Migration
+class Observations extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,18 @@ class Annexed extends Migration
      */
     public function up()
     {
-        Schema::create('annexed', function (Blueprint $table) {
+        Schema::create('observations', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('observation_id');
             $table->unsignedBigInteger('annexed_id');
+            $table->text('message');
             $table->timestamps();
         });
 
-        Schema::table('annexed', function (Blueprint $table) {
-            $table->foreign('user_id')->references('id')->on('users');
+        Schema::table('observations', function (Blueprint $table) {
             $table->foreign('annexed_id')->references('id')->on('annexed');
+            $table->foreign('observation_id')->references('id')->on('observations');
         });
-
     }
 
     /**
@@ -34,6 +34,6 @@ class Annexed extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('annexed');
+        Schema::dropIfExists('observations');
     }
 }

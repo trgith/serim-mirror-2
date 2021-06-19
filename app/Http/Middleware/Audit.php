@@ -3,8 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Http\Request;
 
-class Admin
+class Audit
 {
     /**
      * Handle an incoming request.
@@ -13,12 +14,13 @@ class Admin
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
         $roles = explode(',', $request->user()->menuroles);
-        if ( ! in_array('admin', $roles) ) {
-            return abort( 401 );
+        if (!in_array('auditoria', $roles) ) {
+            return abort( 403, 'Acceso Denegado' );
         }
+
         return $next($request);
     }
 }

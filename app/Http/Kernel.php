@@ -64,8 +64,9 @@ class Kernel extends HttpKernel
         'get.menu' => \App\Http\Middleware\GetMenu::class,
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
         'witnessmiddleware' => \App\Http\Middleware\WitnessMiddleware::class,
-        'organcontrolmiddleware' => \App\Http\Middleware\OrganControlMiddleware::class,
+        'auditoria' => \App\Http\Middleware\Audit::class,
         'publicservermiddleware' => \App\Http\Middleware\PublicServerMiddleware::class,
+        'contraloria' => \App\Http\Middleware\Contraloria::class,
     ];
 
     /**

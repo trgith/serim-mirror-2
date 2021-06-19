@@ -8,12 +8,14 @@ function registerOrganControl() {
     var name = $("#name").val();
     var email = $("#email").val();
     var password = $("#password").val();
+    var region_id = $("#region_id").val();
+
 
     $.ajax({
         type: 'POST',
         url: "/registrar_organo_de_control",
         dataType: "json",
-        data: { email: email, password: password, name: name },
+        data: { email: email, password: password, name: name, region_id: region_id },
 
         success: function(data) {
             if (data) {
@@ -26,6 +28,7 @@ function registerOrganControl() {
                 $("#name").val('');
                 $("#email").val('');
                 $("#password").val('');
+                $("#region_id").val('');
             } else {
                 console.log("Ha ocurrido un error con el servidor");
             }
@@ -36,7 +39,9 @@ function registerOrganControl() {
             $("#error_name").text(response.responseJSON.errors.name);
             $("#error_email").text(response.responseJSON.errors.email);
             $("#error_password").text(response.responseJSON.errors.password);
+            $("#error_municipality").text(response.responseJSON.errors.region_id);
         }
+
     });
 }
 

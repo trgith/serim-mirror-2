@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use DB;
 use Auth;
 use App\Models\User;
+use App\Models\Region;
+use App\Models\Municipality;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -37,24 +39,30 @@ class UsersController extends Controller
         return view('dashboard.admin.usersList', compact('users', 'you'));
     }
 
+
     public function viewRegisterOrganControl()
     {
-        return view('dashboard.admin.registerOrganControl');
+        $regions = Region::all('id','region');
+        return view('dashboard.admin.registerOrganControl', compact("regions"));
     }
+
 
     public function registerOrganControl(RegisterOrganRequest $request)
     {
         DB::beginTransaction();
         try {
-            $user = User::create([
+                $user = User::create([
                 'name' => $request->input('name'),
                 'email' => $request->input('email'),
                 'email_verified_at' => now(),
                 'password' => Hash::make($request->input('password')),
                 'remember_token' => Str::random(10),
-                'menuroles' => 'user, organo_control'
+                'menuroles' => 'user,auditoria',
+                'region_id' => $request->input('region_id'),
             ]);
-            $user->assignRole('organo_control');
+            $this->updateStatusRegion($user->region_id);
+
+            $user->assignRole('auditoria');
             $user->assignRole('user');
             DB::commit();
 
@@ -64,6 +72,17 @@ class UsersController extends Controller
             return response()->json(['status' => false, 'message' => 'Ha ocurrido un error al registrar el usuario']);
         }
 
+    }
+
+    private function updateStatusRegion($id)
+    {
+        $region = Region::find($id);
+        try {
+            $region->status = 1;
+            $region->save();
+        } catch (Exception $e) {
+            return response()->json(['message' => 'Ocurrio un error al actualizar el estatus']);
+        }
     }
 
     /**

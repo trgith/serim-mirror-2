@@ -26,10 +26,12 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'region_id',
         'menuroles',
         'action_user',
         'password',
-        'remember_token'
+        'remember_token',
+
     ];
 
     /**

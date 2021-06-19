@@ -62,8 +62,8 @@ class GetMenu
         foreach($menulists as $menulist){
             $result[ $menulist->name ] = $menus->get( $role, $menulist->id );
         }
-
         view()->share('appMenus', $result);
+
         return $next($request);
     }
 }

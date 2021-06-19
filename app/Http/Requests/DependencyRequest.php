@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RegisterOrganRequest extends FormRequest
+class DependencyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,20 +24,14 @@ class RegisterOrganRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'email' => 'required|unique:users,email',
-            'password' => 'required',
-            'region_id' => 'required'
+            'name_dependency' => 'required'
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required' => 'El nombre es requerido',
-            'email.required' => 'El correo electronico es requerido',
-            'password.required' => 'La contraseña es requerida',
-            'region_id.required' => 'El campo municipio es requerido'
+            'name_dependency.required' => 'El nombre de la dependencia es requerido'
         ];
     }
 }

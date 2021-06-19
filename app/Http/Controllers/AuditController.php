@@ -14,12 +14,12 @@ use App\Http\Requests\OrganRequest;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\UpdateOrganRequest;
 
-class OrganControlController extends Controller
+class AuditController extends Controller
 {
-    public function __contructor()
+    public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('organcontrolmiddleware');
+        $this->middleware('auditoria');
     }
 
 
@@ -33,9 +33,13 @@ class OrganControlController extends Controller
         $getRoles = DB::table('roles')->select('name')->get();
 
         $getUsers = User::all();
-        $roles = collect([str_replace(" ","_",$getRoles[6]->name),
+        $roles = collect([str_replace(" ","_",$getRoles[5]->name),
+                    str_replace(" ","_",$getRoles[6]->name),
                     str_replace(" ","_",$getRoles[7]->name),
-                    str_replace(" ","_",$getRoles[8]->name)]);
+                    str_replace(" ","_",$getRoles[8]->name),
+                    str_replace(" ","_",$getRoles[9]->name),
+                    str_replace(" ","_",$getRoles[10]->name),
+                    str_replace(" ","_",$getRoles[11]->name)]);
 
 
         return view('dashboard.organ_control.module_users.users', ['roles' => $roles, 'users' => $getUsers]);
@@ -56,9 +60,9 @@ class OrganControlController extends Controller
                 'menuroles' => 'user,'.$request->input('menuroles')
             ]);
 
-            $asignar = $user->assignRole($user[3]);
-
+            $user->assignRole($request->input('menuroles'));
             $user->assignRole('user');
+
             DB::commit();
             return response()->json(['status' => true, 'data' => $user, 'message' => 'Usuario registrado correctamente']);
         }catch(Exception $e) {
@@ -106,5 +110,10 @@ class OrganControlController extends Controller
         $userDelete = User::find($id);
         $userDelete->delete();
         return response()->json(['status' => true, 'message'=>'Usuario eliminado correctamente']);
+    }
+
+    public function getViewsWitness()
+    {
+        return view('dashboard.organ_control.module_witness.witness');
     }
 }

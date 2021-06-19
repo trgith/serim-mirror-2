@@ -130,7 +130,7 @@ class MenusTableSeeder extends Seeder
         /* Get roles */
         $this->adminRole = Role::where('name' , '=' , 'admin' )->first();
         $this->userRole = Role::where('name', '=', 'user' )->first();
-        $this->organ_control = Role::where('name', '=', 'organo_control')->first();
+        $this->auditoria = Role::where('name', '=', 'auditoria')->first();
 
         /* Create Sidebar menu */
         DB::table('menulist')->insert([
@@ -158,33 +158,43 @@ class MenusTableSeeder extends Seeder
          * !Menú Administrador
          */
         $this->menuId = DB::getPdo()->lastInsertId();  //set menuId
-        $this->beginDropdown('guest,user,admin', 'Pages');
+        $this->beginDropdown('guest,user,admin', 'Paginas');
         $id = $this->insertLink('guest,user,admin', 'Dashboard',    '/');
-        $id = $this->insertLink('user,admin', 'Notes',              '/notes');
-        $id = $this->insertLink('admin', 'Users',                   '/users');
+        //$id = $this->insertLink('user,admin', 'Notes',              '/notes');
+        $id = $this->insertLink('admin', 'Usuarios',                   '/users');
         $this->endDropdown();
-        $id = $this->beginDropdown('admin', 'Settings');
+        $id = $this->beginDropdown('admin', 'Configuración');
 
-        $id = $this->insertLink('admin', 'Edit menu',               '/menu/menu');
-        $id = $this->insertLink('admin', 'Edit menu elements',      '/menu/element');
-        $id = $this->insertLink('admin', 'Edit roles',              '/roles');
-        $id = $this->insertLink('admin', 'Media',                   '/media');
-        $id = $this->insertLink('admin', 'BREAD',                   '/bread');
+        $id = $this->insertLink('admin', 'Editar menu',               '/menu/menu');
+        $id = $this->insertLink('admin', 'Editar elementos del menu',      '/menu/element');
+        $id = $this->insertLink('admin', 'Editar roles',              '/roles');
+        /* $id = $this->insertLink('admin', 'Media',                   '/media');
+        $id = $this->insertLink('admin', 'BREAD',                   '/bread'); */
         $this->endDropdown();
 
         /**
-         * !Menú Organo Control
+         * !Menú Auditoria
          */
-        $id = $this->insertTitle('organo_control', 'MÓDULO DE USUARIOS');
-        $id = $this->insertLink('organo_control', 'Asignación de Usuarios', '/asignacion_usuarios', 'cil-user');
-        $id = $this->insertLink('organo_control', 'Gestión de Testigos', '/gestion_testigos', ' cil-people');
-        $id = $this->insertTitle('organo_control', ' MÓDULO DE MUNICIPIOS');
-        $id = $this->insertLink('organo_control', 'Gestión de Municipios', '/gestion_municipios', 'cil-institution');
-        $id = $this->insertTitle('organo_control', 'MÓDULO DE DEPENDENCIAS');
-        $id = $this->insertLink('organo_control', 'Gestión de Dependencias', '/gestion_dependencias', 'cil-home');
-        $id = $this->insertLink('organo_control', 'Gestión de Empleados', '/gestion_empleados', 'cil-contact');
-        $id = $this->insertTitle('organo_control', 'MÓDULO DE ANEXOS');
-        $id = $this->insertLink('organo_control', 'Anexos', '/anexos', 'cil-file');
+        $id = $this->insertTitle('auditoria', 'MÓDULO DE USUARIOS');
+        $id = $this->insertLink('auditoria', 'Asignación de Usuarios', '/asignacion_usuarios', 'cil-user');
+        $id = $this->insertLink('auditoria', 'Gestión de Testigos', '/gestion_testigos', ' cil-people');
+
+        $id = $this->insertTitle('auditoria', 'CONTROL DE MUNICIPIO');
+        $id = $this->insertLink('auditoria', 'Control de Municipios', '/control_municipios', 'cil-institution');
+
+
+        $id = $this->insertTitle('auditoria', 'MÓDULO DE DEPENDENCIAS');
+        $id = $this->insertLink('auditoria', 'Gestión de Dependencias', '/gestion_dependencias', 'cil-home');
+
+        //$id = $this->insertLink('auditoria', 'Gestión de Empleados', '/gestion_empleados', 'cil-contact');
+
+        $id = $this->insertTitle('auditoria', 'MÓDULO DE ANEXOS');
+        $id = $this->insertLink('auditoria', 'Anexos', '/anexos', 'cil-file');
+        //$id = $this->insertTitle('auditoria', 'MÓDULO DE ANALISIS');
+        //$id = $this->insertLink('auditoria', 'Control de Municipios', '/control_municipio', 'cil-graph');
+        //$id = $this->insertLink('auditoria', 'Control de Dependencias', '/dependencia_control_usuario', 'cil-graph');
+        //$id = $this->insertLink('auditoria', 'Control de Usuarios', '/dependencia_control_usuario', 'cil-graph');
+
 
         $this->joinAllByTransaction(); ///   <===== Must by use on end of this seeder
     }

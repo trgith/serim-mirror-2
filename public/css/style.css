@@ -20466,7 +20466,10 @@ body {
 #error_email,
 #error_password,
 #error_menuroles,
-#error_actions {
+#error_actions,
+#error_state,
+#error_municipality,
+#error_dependency {
     color: #ffffff;
     background: #d81e50;
     margin-top: .5rem;
@@ -20545,4 +20548,69 @@ body {
 .modal__danger {
     background-color: #d81e50;
     color: #ffffff;
+}
+
+.card__header-modified i {
+    color: #fff;
+    font-size: 3rem;
+    position: relative;
+    bottom: .5rem;
+}
+
+
+/* Witness */
+
+.total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.total h2 {
+    font: 700 2rem 'Montserrat', sans-serif;
+}
+
+.total h3 {
+    font: 700 2rem 'Montserrat', sans-serif;
+}
+
+#request_witness,
+#request_attended,
+#request_rejected {
+    font: 600 .9rem 'Montserrat', sans-serif;
+}
+
+.cil__modified {
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+
+.control__municipality {
+    font-size: 1rem !important;
+}
+
+.users__title-modified {
+    font-size: 1.1rem;
+}
+
+.municipality__h5 {
+    font: 800 1rem 'Montserrat', sans-serif;
+}
+
+.control__inou {
+    font-size: 1.2rem;
+}
+
+.region__link {
+    font: 800 1rem 'Montserrat', sans-serif;
+    color: #ffffff;
+}
+
+.region__link:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.card__header-h {
+    height: 10vh;
 }
