@@ -177,8 +177,4 @@ Route::group(['middleware' => ['get.menu']], function () {
 
     });
 
-
-
-
-
 });

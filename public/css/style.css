@@ -20432,6 +20432,7 @@ body {
     background: #d81e50 !important;
 }
 
+/* Login */
 .login__card {
     background: #ECECEE !important
 }
@@ -20462,6 +20463,76 @@ body {
     font: bolder .8rem 'Montserrat', sans-serif
 }
 
+#login {
+    display: none;
+}
+
+.login__cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.card-modified {
+    cursor: pointer;
+    width: 30%;
+}
+
+.body-modified:hover {
+    transform: scale(1);
+    -moz-transform: scale(1);
+    -webkit-transform: scale(1.1);
+    -o-transform: scale(1);
+    -ms-transform: scale(1);
+}
+
+
+.body-modified {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #d81e50;
+    border-radius: 3%;
+    transition: 1.2s ease;
+
+    /* Prefix */
+    -moz-transition: 1.2s ease;
+    -webkit-transition: 1.2s ease;
+    -o-transition: 1.2 ease;
+}
+
+.body-modified span h5 {
+    font: 800 1rem 'Montserrat', sans-serif;
+    color: #fff;
+}
+
+.login__presentation img {
+    width: 60%;
+}
+
+.login__presentation button {
+    background-color: #d81e50;
+    color: #ffffff;
+    margin-top: 1rem;
+    font: 700 1.2rem 'Montserrat', sans-serif;
+    line-height: 2;
+    width: 15%;
+}
+
+.login__presentation button:hover {
+    color: #fff;
+}
+
+#cards_access {
+    display: none;
+}
+
+
+
+/* End login */
+
+/* Errors */
 #error_name,
 #error_email,
 #error_password,
@@ -20483,6 +20554,8 @@ body {
     display: flex;
     flex-direction: column;
 }
+
+/* End Errors */
 
 .register__form {
     width: 100%;
