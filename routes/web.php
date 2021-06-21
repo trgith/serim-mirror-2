@@ -140,4 +140,8 @@ Route::group(['middleware' => ['get.menu']], function () {
 
     });
 
+    Route::get('/anexos', 'DeliveryController@getAnnexedesMainView');
+    Route::get('/build_annexed/{annexedNumber}', 'DeliveryController@getCreateAnnexedView');
+    Route::post('/create_annexed', 'AnnexedController@index');
+
 });

@@ -20464,9 +20464,7 @@ body {
 
 #error_name,
 #error_email,
-#error_password,
-#error_menuroles,
-#error_actions {
+#error_password {
     color: #ffffff;
     background: #d81e50;
     margin-top: .5rem;
