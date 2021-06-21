@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class OrganControlMiddleware
+class Contraloria
 {
     /**
      * Handle an incoming request.
@@ -16,11 +16,11 @@ class OrganControlMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-
         $roles = explode(',', $request->user()->menuroles);
-
-        if ( ! in_array('organo_control', $roles) ) {
-            return abort( 401 );
+        if (!in_array('controlaria', $roles) ) {
+            return abort(403, 'Acceso Denegado' );
         }
+
+        return $next($request);
     }
 }

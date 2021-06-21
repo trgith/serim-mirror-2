@@ -24,12 +24,14 @@ class UsersAndNotesSeeder extends Seeder
         $usersIds = array();
         $statusIds = array();
         $faker = Faker::create();
+
         /* Create roles */
         $adminRole = Role::create(['name' => 'admin']);
         RoleHierarchy::create([
             'role_id' => $adminRole->id,
             'hierarchy' => 1,
         ]);
+
         $userRole = Role::create(['name' => 'user']);
         RoleHierarchy::create([
             'role_id' => $userRole->id,
@@ -42,9 +44,9 @@ class UsersAndNotesSeeder extends Seeder
             'hierarchy' => 3,
         ]);
 
-        $organ_controlRole = Role::create(['name' => 'organo_control']);
+        $auditoria = Role::create(['name' => 'auditoria']);
         RoleHierarchy::create([
-            'role_id' => $organ_controlRole->id,
+            'role_id' => $auditoria->id,
             'hierarchy' => 4
         ]);
 
@@ -60,22 +62,41 @@ class UsersAndNotesSeeder extends Seeder
             'hierarchy' => 6
         ]);
 
-        $witnessRole = Role::create(['name' => 'presidente_municipal']);
+        $president = Role::create(['name' => 'presidente']);
         RoleHierarchy::create([
-            'role_id' => $witnessRole->id,
+            'role_id' => $president->id,
             'hierarchy' => 7
         ]);
 
-        $witnessRole = Role::create(['name' => 'titular_dependencia']);
+        $comptroller = Role::create(['name' => 'contraloria']);
         RoleHierarchy::create([
-            'role_id' => $witnessRole->id,
+            'role_id' => $comptroller->id,
             'hierarchy' => 8
         ]);
 
-        $witnessRole = Role::create(['name' => 'estructura_organica']);
+
+        $treasury = Role::create(['name' => 'tesoreria']);
         RoleHierarchy::create([
-            'role_id' => $witnessRole->id,
+            'role_id' => $treasury->id,
             'hierarchy' => 9
+        ]);
+
+        $receivership = Role::create(['name' => 'sindicatura']);
+        RoleHierarchy::create([
+            'role_id' => $receivership->id,
+            'hierarchy' => 10
+        ]);
+
+        $publicWork = Role::create(['name' => 'obra_publica']);
+        RoleHierarchy::create([
+            'role_id' => $publicWork->id,
+            'hierarchy' => 11
+        ]);
+
+        $otherDependency = Role::create(['name' => 'demas_depedencias']);
+        RoleHierarchy::create([
+            'role_id' => $otherDependency->id,
+            'hierarchy' => 12
         ]);
 
         /*  insert status  */
@@ -118,9 +139,9 @@ class UsersAndNotesSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'menuroles' => 'user,organo_control'
+            'menuroles' => 'user,auditoria'
         ]);
-        $user->assignRole('organo_control');
+        $user->assignRole('auditoria');
         $user->assignRole('user');
 
 

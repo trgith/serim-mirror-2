@@ -32,6 +32,10 @@
     <!-- Main styles for this application-->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
+    <!---- Efects Library CSS ---->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,700&display=swap" rel="stylesheet">
     <!-- Global site tag (gtag.js) - Google Analytics-->

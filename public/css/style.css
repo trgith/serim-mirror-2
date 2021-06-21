@@ -20432,6 +20432,7 @@ body {
     background: #d81e50 !important;
 }
 
+/* Login */
 .login__card {
     background: #ECECEE !important
 }
@@ -20462,9 +20463,84 @@ body {
     font: bolder .8rem 'Montserrat', sans-serif
 }
 
+#login {
+    display: none;
+}
+
+.login__cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.card-modified {
+    cursor: pointer;
+    width: 30%;
+}
+
+.body-modified:hover {
+    transform: scale(1);
+    -moz-transform: scale(1);
+    -webkit-transform: scale(1.1);
+    -o-transform: scale(1);
+    -ms-transform: scale(1);
+}
+
+
+.body-modified {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #d81e50;
+    border-radius: 3%;
+    transition: 1.2s ease;
+
+    /* Prefix */
+    -moz-transition: 1.2s ease;
+    -webkit-transition: 1.2s ease;
+    -o-transition: 1.2 ease;
+}
+
+.body-modified span h5 {
+    font: 800 1rem 'Montserrat', sans-serif;
+    color: #fff;
+}
+
+.login__presentation img {
+    width: 60%;
+}
+
+.login__presentation button {
+    background-color: #d81e50;
+    color: #ffffff;
+    margin-top: 1rem;
+    font: 700 1.2rem 'Montserrat', sans-serif;
+    line-height: 2;
+    width: 15%;
+}
+
+.login__presentation button:hover {
+    color: #fff;
+}
+
+#cards_access {
+    display: none;
+}
+
+
+
+/* End login */
+
+/* Errors */
 #error_name,
 #error_email,
-#error_password {
+#error_password,
+#error_menuroles,
+#error_actions,
+#error_state,
+#error_municipality,
+#error_dependency {
     color: #ffffff;
     background: #d81e50;
     margin-top: .5rem;
@@ -20478,6 +20554,8 @@ body {
     display: flex;
     flex-direction: column;
 }
+
+/* End Errors */
 
 .register__form {
     width: 100%;
@@ -20538,4 +20616,74 @@ body {
     display: flex;
     margin-left: auto;
     font: 900 1rem 'Montserrat', sans-serif
+}
+
+.modal__danger {
+    background-color: #d81e50;
+    color: #ffffff;
+}
+
+.card__header-modified i {
+    color: #fff;
+    font-size: 3rem;
+    position: relative;
+    bottom: .5rem;
+}
+
+
+/* Witness */
+
+.total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.total h2 {
+    font: 700 2rem 'Montserrat', sans-serif;
+}
+
+.total h3 {
+    font: 700 2rem 'Montserrat', sans-serif;
+}
+
+#request_witness,
+#request_attended,
+#request_rejected {
+    font: 600 .9rem 'Montserrat', sans-serif;
+}
+
+.cil__modified {
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+
+.control__municipality {
+    font-size: 1rem !important;
+}
+
+.users__title-modified {
+    font-size: 1.1rem;
+}
+
+.municipality__h5 {
+    font: 800 1rem 'Montserrat', sans-serif;
+}
+
+.control__inou {
+    font-size: 1.2rem;
+}
+
+.region__link {
+    font: 800 1rem 'Montserrat', sans-serif;
+    color: #ffffff;
+}
+
+.region__link:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.card__header-h {
+    height: 10vh;
 }

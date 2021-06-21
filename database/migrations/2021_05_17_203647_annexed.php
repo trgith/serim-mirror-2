@@ -16,12 +16,15 @@ class Annexed extends Migration
         Schema::create('annexed', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('annexed_id');
             $table->timestamps();
         });
 
         Schema::table('annexed', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('annexed_id')->references('id')->on('annexed');
         });
+
     }
 
     /**

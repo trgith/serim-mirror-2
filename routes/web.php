@@ -131,12 +131,49 @@ Route::group(['middleware' => ['get.menu']], function () {
 
     });
 
-    Route::group(['middleware' => ['role:organo_control']], function(){
-        Route::get('/asignacion_usuarios', 'OrganControlController@assignmentUserView');
-        Route::post('registrar_usuario', 'OrganControlController@storUserOrganoControl');
+    Route::group(['middleware' => ['role:auditoria']], function(){
+        Route::get('/asignacion_usuarios', 'AuditController@assignmentUserView');
+        Route::post('registrar_usuario', 'AuditController@storUserOrganoControl');
+        Route::get('/lista_usuarios', 'AuditController@getUsersRegistered');
+        Route::get('/editar_usuario/{id}', 'AuditController@viewEditUserRegistered');
+        Route::put('/actualizar_usuario/{id}', 'AuditController@updateUserRegistered');
+        Route::delete('/eliminar_usuario/{id}', 'AuditController@deleteUserRegister');
+        Route::get('/gestion_testigos', 'AuditController@getViewsWitness');
+        Route::get('/control_municipios', 'MunicipalitiesController@getViewMunicipality');
+        Route::put('/actualizar_municipio/{id}', 'MunicipalitiesController@updateMunicipality');
+        Route::get('/municipalities/{id}', 'MunicipalitiesController@getViewMunicipalityForRegion');
+        Route::get('/municipio_anexo', 'MunicipalitiesController@getViewMunicipalityAnnexed');
+
+
+        Route::get('/gestion_dependencias', 'DependenciesController@getViewDependency');
+        Route::post('/registrar_dependencia', 'DependenciesController@storeDependency');
+        Route::put('/editar_dependencia/{id}', 'DependenciesController@updateDependency');
+        Route::get('/editar_dependencia/{id}', 'DependenciesController@editViewDependency');
+        Route::get('/lista_dependencias', 'DependenciesController@getListDependencies');
+        Route::get('/gestion_empleados', 'EmployeesController@getViewEmployee');
     });
 
-    Route::group(['middleware' => ['role:publicservermiddleware']], function(){
+
+    Route::group(['middleware' => ['role:presidente']], function(){
+
+    });
+
+    Route::group(['middleware' => ['role:contraloria']], function() {
+        //Route::get('/', 'ContraloriaController@getViewContraloria');
+    });
+
+    Route::group(['middleware' => ['role:tesoreria']], function() {
+    });
+
+    Route::group(['middleware' => ['role:sindicatura']], function() {
+
+    });
+
+    Route::group(['middleware' => ['role:obra_publica']], function() {
+
+    });
+
+    Route::group(['middleware' => ['role:demas_dependencias']], function() {
 
     });
 

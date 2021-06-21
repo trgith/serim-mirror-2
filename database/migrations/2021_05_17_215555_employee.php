@@ -16,6 +16,7 @@ class Employee extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('department_id');
+            $table->string('area_adscripcion');
             $table->string('full_name',200);
             $table->timestamps();
         });

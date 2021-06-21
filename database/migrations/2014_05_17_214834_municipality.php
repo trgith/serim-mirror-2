@@ -15,13 +15,13 @@ class Municipality extends Migration
     {
         Schema::create('municipalities', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('state_id');
+            $table->unsignedBigInteger('region_id');
             $table->string('municipality',100);
             $table->timestamps();
         });
 
         Schema::table('municipalities', function (Blueprint $table) {
-            $table->foreign('state_id')->references('id')->on('states');
+            $table->foreign('region_id')->references('id')->on('regions');
         });
     }
 

@@ -26,7 +26,8 @@ class RegisterOrganRequest extends FormRequest
         return [
             'name' => 'required',
             'email' => 'required|unique:users,email',
-            'password' => 'required'
+            'password' => 'required',
+            'region_id' => 'required'
         ];
     }
 
@@ -35,7 +36,8 @@ class RegisterOrganRequest extends FormRequest
         return [
             'name.required' => 'El nombre es requerido',
             'email.required' => 'El correo electronico es requerido',
-            'password.required' => 'La contraseña es requerida'
+            'password.required' => 'La contraseña es requerida',
+            'region_id.required' => 'El campo municipio es requerido'
         ];
     }
 }
