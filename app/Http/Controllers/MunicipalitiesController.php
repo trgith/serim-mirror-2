@@ -64,6 +64,11 @@ class MunicipalitiesController extends Controller
 
     public function getViewMunicipalityAnnexed()
     {
-        return view('dashboard.organ_control.module_municipalities.annexed');
+        $descriptions = ["Plan de Desarrollo Municipal \n", "Estructura Orgánica", "Presupuesto de Ingresos y Egresos, Programa Presupuestario, Informes de Gobierno, Recomendaciones, Plan Anual de Evaluación",
+        "Documentación Presentada a la Auditoria Superior del Estado", "Documentación Justificativa y Comprobatoria de la Fuente de Financiamiento de Ingresos de Gestión", "Entrega de Información en Sistemas",
+        "Entrega de Cuentas Públicas", "Entrega de Informes Parciales y Dictámen del Auditor Externo", "Expediente Tributario", "Arqueo de Caja", "Conciliación Bancaria",
+        "Relación del Último Cheque Expedido por cada una de las cuentas bancarias", "Relación Cheques Expedidos por entregar o Transferencias por Realizar a beneficiarios", "Relación de Cancelación de Cuentas Bancarias",
+        "Relación padrones actualizados de usuarios y contribuyentes"];
+        return view('dashboard.organ_control.module_municipalities.annexed', compact('descriptions'));
     }
 }

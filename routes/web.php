@@ -139,7 +139,7 @@ Route::group(['middleware' => ['get.menu']], function () {
         Route::put('/actualizar_usuario/{id}', 'AuditController@updateUserRegistered');
         Route::delete('/eliminar_usuario/{id}', 'AuditController@deleteUserRegister');
         Route::get('/gestion_testigos', 'AuditController@getViewsWitness');
-        Route::get('/control_municipios', 'MunicipalitiesController@getViewMunicipality');
+        Route::get('/control_regiones', 'MunicipalitiesController@getViewMunicipality');
         Route::put('/actualizar_municipio/{id}', 'MunicipalitiesController@updateMunicipality');
         Route::get('/municipalities/{id}', 'MunicipalitiesController@getViewMunicipalityForRegion');
         Route::get('/municipio_anexo', 'MunicipalitiesController@getViewMunicipalityAnnexed');

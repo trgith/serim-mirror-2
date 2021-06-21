@@ -78,10 +78,11 @@ class AnnexedController extends Controller
                     $columns = $content['addNewTable_Columns'];
                     $headers = $content['addNewTable_Headers'];
                     $titleTable =  null;
+                    $sheet = $annexedFile->getActiveSheet();
                     if($content['addNewTable_Title']){
                         $titleTable = $content['addNewTable_Title'];
                     }
-                    $rowFinal = $this->$methodActual($data, $beginRow, $columns, $annexedFile, $headers, $titleTable);
+                    $rowFinal = $this->$methodActual($data, $beginRow, $columns, $sheet, $headers, $titleTable);
                     break;
                 case 'addDrawing':
                     $sheet = $annexedFile->getActiveSheet();
