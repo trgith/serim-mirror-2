@@ -71,7 +71,7 @@
                     <div class="card card-modified animate__animated animate__fadeIn animate__slow">
                         <div class="card-body body-modified">
                             <span onclick="openLogin()">
-                                <h5 class="text-center">PRESIDENTE</h5>
+                                <h5 class="text-center">ASEP</h5>
                             </span>
                         </div>
                     </div>
@@ -79,7 +79,7 @@
                     <div class="card card-modified animate__animated animate__fadeIn animate__slow">
                         <div class="card-body body-modified">
                             <span onclick="openLogin()">
-                                <h5 class="text-center">CONTRALORIA</h5>
+                                <h5 class="text-center">MUNICIPIO</h5>
                             </span>
                         </div>
                     </div>
@@ -87,31 +87,7 @@
                     <div class="card card-modified animate__animated animate__fadeIn animate__slow">
                         <div class="card-body body-modified">
                             <span onclick="openLogin()">
-                                <h5 class="text-center">TESORERIA/ADMINISTRACIÓN</h5>
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="card card-modified animate__animated animate__fadeIn animate__slow">
-                        <div class="card-body body-modified">
-                            <span onclick="openLogin()">
-                                <h5 class="text-center">SINDICATURA/S.GENERAL</h5>
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="card card-modified animate__animated animate__fadeIn animate__slow">
-                        <div class="card-body body-modified">
-                            <span onclick="openLogin()">
-                                <h5 class="text-center">OBRA PUBLICA</h5>
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="card card-modified animate__animated animate__fadeIn animate__slow">
-                        <div class="card-body body-modified">
-                            <span onclick="openLogin()">
-                                <h5 class="text-center">DEMÁS DEPENDENCIAS</h5>
+                                <h5 class="text-center">TESTIGO</h5>
                             </span>
                         </div>
                     </div>

@@ -179,22 +179,22 @@ class MenusTableSeeder extends Seeder
         $id = $this->insertLink('auditoria', 'Asignación de Usuarios', '/asignacion_usuarios', 'cil-user');
         $id = $this->insertLink('auditoria', 'Gestión de Testigos', '/gestion_testigos', ' cil-people');
 
-        $id = $this->insertTitle('auditoria', 'CONTROL DE MUNICIPIO');
-        $id = $this->insertLink('auditoria', 'Control de Municipios', '/control_municipios', 'cil-institution');
-
+        $id = $this->insertTitle('auditoria', 'CONTROL DE REGIONES');
+        $id = $this->insertLink('auditoria', 'Control de Regiones', '/control_regiones', 'cil-institution');
 
         $id = $this->insertTitle('auditoria', 'MÓDULO DE DEPENDENCIAS');
         $id = $this->insertLink('auditoria', 'Gestión de Dependencias', '/gestion_dependencias', 'cil-home');
 
-        //$id = $this->insertLink('auditoria', 'Gestión de Empleados', '/gestion_empleados', 'cil-contact');
-
         $id = $this->insertTitle('auditoria', 'MÓDULO DE ANEXOS');
         $id = $this->insertLink('auditoria', 'Anexos', '/anexos', 'cil-file');
-        //$id = $this->insertTitle('auditoria', 'MÓDULO DE ANALISIS');
-        //$id = $this->insertLink('auditoria', 'Control de Municipios', '/control_municipio', 'cil-graph');
-        //$id = $this->insertLink('auditoria', 'Control de Dependencias', '/dependencia_control_usuario', 'cil-graph');
-        //$id = $this->insertLink('auditoria', 'Control de Usuarios', '/dependencia_control_usuario', 'cil-graph');
 
+
+        /**
+         * !Menú Contraloria
+         */
+
+        $id = $this->insertTitle('contraloria', 'MÓDULO CONTRALORIA');
+        $id = $this->insertTitle('contraloria', 'Control de Municipios', '/control_municipios', 'cil-institution');
 
         $this->joinAllByTransaction(); ///   <===== Must by use on end of this seeder
     }
