@@ -62,7 +62,7 @@ class UsersAndNotesSeeder extends Seeder
             'hierarchy' => 6
         ]);
 
-        $president = Role::create(['name' => 'presidente']);
+        $president = Role::create(['name' => 'presidente_municipal']);
         RoleHierarchy::create([
             'role_id' => $president->id,
             'hierarchy' => 7

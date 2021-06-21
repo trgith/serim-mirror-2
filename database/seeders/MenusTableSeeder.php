@@ -168,8 +168,6 @@ class MenusTableSeeder extends Seeder
         $id = $this->insertLink('admin', 'Editar menu',               '/menu/menu');
         $id = $this->insertLink('admin', 'Editar elementos del menu',      '/menu/element');
         $id = $this->insertLink('admin', 'Editar roles',              '/roles');
-        /* $id = $this->insertLink('admin', 'Media',                   '/media');
-        $id = $this->insertLink('admin', 'BREAD',                   '/bread'); */
         $this->endDropdown();
 
         /**

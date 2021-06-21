@@ -59,7 +59,7 @@
 
                             <div class="form-group ">
                                 <input type="radio" class="form-check-input" name="au" id="not_apply" value="not_apply">
-                                <label class="form-check-label forms__label">No Aplica</label>
+                                <label class="form-check-label forms__label">Dependencia</label>
                             </div>
                         </div>
                         <p id="error_actions"></p>
