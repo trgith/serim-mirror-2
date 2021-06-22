@@ -15,7 +15,6 @@ class AnnexedCatalog extends Migration
     {
         Schema::create('annexed_catalog', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('annexed_id');
             $table->unsignedBigInteger('area_id');
             $table->string('name', 150);
             $table->string('number',100);
@@ -24,7 +23,6 @@ class AnnexedCatalog extends Migration
         });
 
         Schema::table('annexed_catalog', function(Blueprint $table) {
-            $table->foreign('annexed_id')->references('id')->on('annexed');
             $table->foreign('area_id')->references('id')->on('area');
         });
     }

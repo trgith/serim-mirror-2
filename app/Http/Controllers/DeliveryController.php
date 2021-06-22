@@ -24,7 +24,8 @@ class DeliveryController extends Controller
         "Entrega de Cuentas Públicas", "Entrega de Informes Parciales y Dictámen del Auditor Externo", "Expediente Tributario", "Arqueo de Caja", "Conciliación Bancaria",
         "Relación del Último Cheque Expedido por cada una de las cuentas bancarias", "Relación Cheques Expedidos por entregar o Transferencias por Realizar a beneficiarios", "Relación de Cancelación de Cuentas Bancarias",
         "Relación padrones actualizados de usuarios y contribuyentes"];
-        return view('annexes.main', compact('descriptions'));
+        $areas = ["Presidente", "Contraloría", "Tesoría / Administración", "Sindicatura / S. General", "Obra Pública", "Demás Dependencias"];
+        return view('annexes.main', compact('descriptions', 'areas'));
     }
 
     public function getCreateAnnexedView(Request $request)

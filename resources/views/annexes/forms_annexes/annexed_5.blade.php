@@ -158,9 +158,9 @@
 
 
     function sendDataAnnexed5(){
-        //constructDataAnnexed5();
+        constructDataAnnexed5();
         console.log(jQuery('meta[name="csrf-token"]').attr('content'));
-        //console.log(jsonComplete);
+        console.log(jsonComplete);
 
         $('#Exportar').prop('disabled', true);
         $.ajaxSetup({

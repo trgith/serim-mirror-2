@@ -51,7 +51,7 @@
                 <div class="card">
                     <div class="card-header card__header-modified">
                         <i class="fa fa-align-justify"></i>
-                        <h4 class="users__title">Listo Anexos</h4>
+                        <h4 class="users__title">Lista Anexos</h4>
                     </div>
                     <div class="card-body">
                         <div class="row">

@@ -67,6 +67,7 @@ class AnnexedController extends Controller
                     $columns = $content['addTable_Columns'];
                     $insertNewRows = $content['insertNewRows'];
                     $mergeCells = null;
+
                     if($content['mergeCells']){
                         $mergeCells = $content['mergeCells'];
                     }
