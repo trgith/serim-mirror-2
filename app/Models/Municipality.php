@@ -9,7 +9,8 @@ class Municipality extends Model
 {
 
     protected $fillable = [
-        'status'
+        'status',
+        'image'
     ];
 
 

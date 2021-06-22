@@ -17,7 +17,7 @@ class Contraloria
     public function handle(Request $request, Closure $next)
     {
         $roles = explode(',', $request->user()->menuroles);
-        if (!in_array('controlaria', $roles) ) {
+        if (!in_array('contraloria', $roles) ) {
             return abort(403, 'Acceso Denegado' );
         }
 

@@ -193,6 +193,7 @@ class MenusTableSeeder extends Seeder
 
         $id = $this->insertTitle('contraloria', 'MÓDULO CONTRALORIA');
         $id = $this->insertLink('contraloria', 'Control de Dependencias', '/control_dependencias', 'cil-home');
+        $id = $this->insertLink('contraloria', 'Subir Imagen', '/subir_imagen', 'cil-file');
 
         $id = $this->insertTitle('contraloria', 'MÓDULO ASIGNACIÓN');
         $id = $this->insertLink('contraloria', 'Asignación de Anexos', '/asignacion_anexos', 'cil-file');

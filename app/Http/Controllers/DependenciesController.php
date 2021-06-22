@@ -26,7 +26,6 @@ class DependenciesController extends Controller
 
     public function storeDependency(DependencyRequest $request)
     {
-
        DB::beginTransaction();
         try {
 
@@ -40,7 +39,6 @@ class DependenciesController extends Controller
                 'created_at' => Carbon::now(),
                 'updated_at' => null
             ]);
-
 
             DB::commit();
             return response()->json(['status' => true, 'data' => $dependency, 'message' => 'Dependencia registrada correctamente']);

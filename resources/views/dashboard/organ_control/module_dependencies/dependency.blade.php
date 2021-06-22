@@ -27,7 +27,6 @@
                                         <option value="{{ $region['id'] }}">{{ $region['region'] }}</option>
                                     @endforeach
                                 </select>
-                                <p id="error_dependency"></p>
                             </div>
 
                             <div class="form-group">
@@ -38,7 +37,6 @@
                                         <option value="{{ $municipality['id'] }}" class="hide mostrar-{{ $municipality['region_id'] }}">{{ $municipality['municipality'] }}</option>
                                     @endforeach
                                 </select>
-                                <p id="error_dependency"></p>
                             </div>
 
                             <div id="success"></div>

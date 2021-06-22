@@ -16,6 +16,7 @@ class Municipality extends Migration
         Schema::create('municipalities', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('region_id');
+            $table->string('image')->nullable();
             $table->string('municipality',100);
             $table->timestamps();
         });

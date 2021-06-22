@@ -20432,7 +20432,9 @@ body {
     background: #d81e50 !important;
 }
 
+
 /* Login */
+
 .login__card {
     background: #ECECEE !important
 }
@@ -20487,7 +20489,6 @@ body {
     -ms-transform: scale(1);
 }
 
-
 .body-modified {
     display: flex;
     flex-direction: column;
@@ -20495,7 +20496,6 @@ body {
     background-color: #d81e50;
     border-radius: 3%;
     transition: 1.2s ease;
-
     /* Prefix */
     -moz-transition: 1.2s ease;
     -webkit-transition: 1.2s ease;
@@ -20529,10 +20529,11 @@ body {
 }
 
 
-
 /* End login */
 
+
 /* Errors */
+
 #error_name,
 #error_email,
 #error_password,
@@ -20540,7 +20541,8 @@ body {
 #error_actions,
 #error_state,
 #error_municipality,
-#error_dependency {
+#error_dependency,
+#error_image {
     color: #ffffff;
     background: #d81e50;
     margin-top: .5rem;
@@ -20554,6 +20556,7 @@ body {
     display: flex;
     flex-direction: column;
 }
+
 
 /* End Errors */
 

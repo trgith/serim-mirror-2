@@ -7,6 +7,8 @@ use DB;
 use Exception;
 use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Region;
+use App\Models\Municipality;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -41,8 +43,13 @@ class AuditController extends Controller
                     str_replace(" ","_",$getRoles[10]->name),
                     str_replace(" ","_",$getRoles[11]->name)]);
 
+        $regions = Region::all('id', 'region', 'status');
 
-        return view('dashboard.organ_control.module_users.users', ['roles' => $roles, 'users' => $getUsers]);
+        $municipalities = Municipality::all('id', 'municipality', 'region_id');
+
+        return view('dashboard.organ_control.module_users.users', ['roles' => $roles, 'users' => $getUsers,
+        'regions' => $regions,
+        'municipalities' => $municipalities]);
     }
 
 
@@ -57,6 +64,7 @@ class AuditController extends Controller
                 'password' => Hash::make($request->input('password')),
                 'remember_token' => Str::random(10),
                 'action_user' => $request->input('action_user'),
+                'municipality_id' => $request->input('municipality_id'),
                 'menuroles' => 'user,'.$request->input('menuroles')
             ]);
 
