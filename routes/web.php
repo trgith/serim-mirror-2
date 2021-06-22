@@ -144,7 +144,6 @@ Route::group(['middleware' => ['get.menu']], function () {
         Route::get('/municipalities/{id}', 'MunicipalitiesController@getViewMunicipalityForRegion');
         Route::get('/municipio_anexo', 'MunicipalitiesController@getViewMunicipalityAnnexed');
 
-
         Route::get('/gestion_dependencias', 'DependenciesController@getViewDependency');
         Route::post('/registrar_dependencia', 'DependenciesController@storeDependency');
         Route::put('/editar_dependencia/{id}', 'DependenciesController@updateDependency');
@@ -159,7 +158,10 @@ Route::group(['middleware' => ['get.menu']], function () {
     });
 
     Route::group(['middleware' => ['role:contraloria']], function() {
-        //Route::get('/', 'ContraloriaController@getViewContraloria');
+        Route::get('/control_municipios', 'ContraloriaController@getViewMunicipalities');
+        Route::get('/control_dependencias', 'ContraloriaController@getViewDependencies');
+        Route::get('/control_usuarios', 'ContraloriaController@getViewUsers');
+
     });
 
     Route::group(['middleware' => ['role:tesoreria']], function() {

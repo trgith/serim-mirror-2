@@ -7,6 +7,14 @@ $(document).ready(function() {
             "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
         },
     });
+
+    /**
+     *
+     * Esconder select de Municipios
+     *
+     */
+    $('#region_select').prop("disabled", true);
+
 });
 
 function registerDependency() {
@@ -21,13 +29,25 @@ function registerDependency() {
     var exterior_number = $("#exterior_number").val();
     var interior_number = $("#interior_number").val();
     var telephone = $("#telephone").val();
+    var municipality_id = $("#municipality_id").val();
 
+    console.log(municipality_id);
     $.ajax({
         type: 'POST',
         url: '/registrar_dependencia',
         dataType: 'JSON',
-        data: { name_dependency: name_dependency, address: address, exterior_number: exterior_number, interior_number: interior_number, telephone: telephone },
+        data: {
+            name_dependency: name_dependency,
+            address: address,
+            exterior_number: exterior_number,
+            interior_number: interior_number,
+            telephone: telephone,
+            municipality_id: municipality_id
+        },
+
+
         success: function(data) {
+
             if (data) {
                 $("#success").text(data.message).css('display', "flex");
                 setTimeout(function() {
@@ -40,6 +60,7 @@ function registerDependency() {
                 $("#exterior_number").val('');
                 $("#interior_number").val('');
                 $("#telephone").val('');
+                $("#municipality_id").val();
             } else {
                 console.log('Ha ocurrido un error con el servidor');
             }
@@ -69,12 +90,21 @@ function editDependency() {
     var exterior_number = $("#exterior_number").val();
     var interior_number = $("#interior_number").val();
     var telephone = $("#telephone").val();
+    var municipality_id = $("#municipality_id").val();
 
     $.ajax({
         type: 'PUT',
         url: '/editar_dependencia/' + id,
         dataType: 'JSON',
-        data: { id: id, name_dependency: name_dependency, address: address, exterior_number: exterior_number, interior_number: interior_number, telephone: telephone },
+        data: {
+            id: id,
+            name_dependency: name_dependency,
+            address: address,
+            exterior_number: exterior_number,
+            interior_number: interior_number,
+            municipality_id: municipality_id,
+            telephone: telephone
+        },
         success: function(data) {
             console.log(data);
             if (data) {
@@ -130,4 +160,10 @@ function getDependencies() {
 
 function cleanDependency() {
     $("#error_dependency").html("");
+}
+
+function changeMunicipalities(input) {
+    $('.hide').hide();
+    $('#region_select').prop("disabled", false);
+    $('.mostrar-' + $(input).val()).show();
 }

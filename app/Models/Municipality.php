@@ -17,4 +17,9 @@ class Municipality extends Model
     {
         return $this->belongsTo(State::class);
     }
+
+    public function dependencies()
+    {
+        return $this->hasMany(Dependency::class);
+    }
 }

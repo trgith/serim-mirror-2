@@ -15,6 +15,7 @@ class Dependency extends Migration
     {
         Schema::create('dependencies', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('municipality_id');
             $table->string('name_dependency',150);
             $table->string('address',150)->nullable();
             $table->string('exterior_number',5)->nullable();
@@ -22,6 +23,11 @@ class Dependency extends Migration
             $table->string('telephone', 13)->nullable();
             $table->timestamps();
         });
+
+        Schema::table('dependencies', function (Blueprint $table) {
+            $table->foreign('municipality_id')->references('id')->on('municipalities');
+        });
+
     }
 
     /**
