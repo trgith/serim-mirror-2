@@ -12,7 +12,6 @@
                         <h3 class="users__title">Registra tu Dependencia</h3>
                     </div>
 
-                    <div id="success"></div>
                     <div class="card-body">
                         <div class="dependency__form">
                             <div class="form-group">
@@ -22,10 +21,42 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="" class="forms__label">Dirección</label>
-                                <input type="text" class="form-control forms__input" id="address" placeholder="Ingresa tu dirección">
+                                <label for="" class="forms__label">Elige una Región</label>
+                                <select class="form-control" onchange="changeMunicipalities(this)">
+                                    @foreach($regions as $region)
+                                        <option value="{{ $region['id'] }}">{{ $region['region'] }}</option>
+                                    @endforeach
+                                </select>
+                                <p id="error_dependency"></p>
                             </div>
 
+                            <div class="form-group">
+                                <label for="" class="forms__label">Elige un Municipio</label>
+                                <select id="municipality_id" class="form-control">
+                                    <option selected disabled> Seleccionar Municipio...</option>
+                                    @foreach($municipalities as $municipality)
+                                        <option value="{{ $municipality['id'] }}" class="hide mostrar-{{ $municipality['region_id'] }}">{{ $municipality['municipality'] }}</option>
+                                    @endforeach
+                                </select>
+                                <p id="error_dependency"></p>
+                            </div>
+
+                            <div id="success"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                <div class="card">
+
+                    <div class="card-header card__header-modified">
+                        <h3 class="users__title">Domicilio</h3>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="dependency__form">
                             <div class="form-group">
                                 <label for="" class="forms__label">Número Exterior</label>
                                 <input type="text" class="form-control forms__input" id="exterior_number" placeholder="Ingresa número exterior">
@@ -34,7 +65,6 @@
                             <div class="form-group">
                                 <label for="" class="forms__label">Número Interior</label>
                                 <input type="text" class="form-control forms__input" id="interior_number" placeholder="Ingresa número interior">
-
                             </div>
 
                             <div class="form-group">

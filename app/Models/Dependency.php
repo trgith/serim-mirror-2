@@ -15,7 +15,13 @@ class Dependency extends Model
         'exterior_number',
         'interior_number',
         'telephone',
+        'municipality_id'
     ];
+
+    public function municipality()
+    {
+        return $this->belongsTo(Municipality::class, 'municipality_id');
+    }
 
     public function departments()
     {

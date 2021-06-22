@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use DB;
 use Carbon\Carbon;
 use App\Models\Dependency;
+use App\Models\Region;
+use App\Models\Municipality;
 use Illuminate\Http\Request;
 use App\Http\Requests\DependencyRequest;
 
@@ -13,7 +15,12 @@ class DependenciesController extends Controller
     public function getViewDependency()
     {
         $dependencies = Dependency::all('id', 'name_dependency', 'address', 'exterior_number', 'interior_number', 'telephone');
-        return view('dashboard.organ_control.module_dependencies.dependency', compact('dependencies'));
+
+        $regions = Region::all('id', 'region', 'status');
+
+        $municipalities = Municipality::all('id', 'municipality', 'region_id');
+
+        return view('dashboard.organ_control.module_dependencies.dependency', compact('dependencies', 'regions', 'municipalities'));
 
     }
 
@@ -22,20 +29,24 @@ class DependenciesController extends Controller
 
        DB::beginTransaction();
         try {
+
             $dependency = Dependency::create([
                 'name_dependency' => $request->input('name_dependency'),
                 'address' => $request->input('address'),
                 'exterior_number' => $request->input('exterior_number'),
                 'interior_number' => $request->input('interior_number'),
                 'telephone' => $request->input('telephone'),
+                'municipality_id' => $request->input('municipality_id'),
                 'created_at' => Carbon::now(),
                 'updated_at' => null
             ]);
+
+
             DB::commit();
             return response()->json(['status' => true, 'data' => $dependency, 'message' => 'Dependencia registrada correctamente']);
         }catch(Exception $e) {
             DB::rollback();
-            return response()->json(['status' => false, 'message' => 'Ha ocurrido un error al registrar la dependencia']);
+            return response()->json(['status' => false, 'message' => 'Ha ocurrido un error al registrar la dependencia'.$e]);
         }
 
     }
@@ -49,6 +60,7 @@ class DependenciesController extends Controller
             $updateDependency->address = $request->input('address');
             $updateDependency->exterior_number = $request->input('exterior_number');
             $updateDependency->telephone = $request->input('telephone');
+            $updateDependency->municipality_id = $request->input('municipality_id');
             $updateDependency->updated_at = Carbon::now();
             $updateDependency->save();
             DB::commit();

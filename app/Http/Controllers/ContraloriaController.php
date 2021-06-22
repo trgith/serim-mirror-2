@@ -9,15 +9,26 @@ class ContraloriaController extends Controller
 
     public function __construct()
     {
-
         $this->middleware('auth');
         $this->middleware('contraloria');
     }
 
 
-    public function getViewContraloria()
+    public function getViewMunicipalities()
     {
         return view('dashboard.contraloria.contraloria');
+    }
+
+
+    public function getViewDependencies()
+    {
+
+    }
+
+
+    public function getViewUsers()
+    {
+
     }
 
 }

@@ -192,7 +192,10 @@ class MenusTableSeeder extends Seeder
          */
 
         $id = $this->insertTitle('contraloria', 'MÓDULO CONTRALORIA');
-        $id = $this->insertTitle('contraloria', 'Control de Municipios', '/control_municipios', 'cil-institution');
+        $id = $this->insertLink('contraloria', 'Control de Dependencias', '/control_dependencias', 'cil-home');
+
+        $id = $this->insertTitle('contraloria', 'MÓDULO ASIGNACIÓN');
+        $id = $this->insertLink('contraloria', 'Asignación de Anexos', '/asignacion_anexos', 'cil-file');
 
         $this->joinAllByTransaction(); ///   <===== Must by use on end of this seeder
     }
