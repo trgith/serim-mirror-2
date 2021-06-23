@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+use Auth;
+use Carbon;
+use Exception;
+use App\Models\Annexed;
 use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -34,7 +39,6 @@ class AnnexedController extends Controller
         **/
         $annexedFile = null;
         $rowFinal = null;
-
 
         /**
         * TODO Se ciclan los metodos relacionados con la construcción de ese anexo
@@ -104,7 +108,9 @@ class AnnexedController extends Controller
                     break;
                 case 'saveFile':
                     $nameFile = $jsonComplete['nameFile'];
-                    $this->$methodActual($annexedFile, $nameFile);
+                    $texto = $jsonComplete['texto'];
+                    $numberAnnexed = $jsonComplete['numberAnnexed'];
+                    $this->$methodActual($annexedFile, $nameFile, $texto, $numberAnnexed);
                     break;
                 default:
                     //$this->$methodActual();
@@ -189,14 +195,37 @@ class AnnexedController extends Controller
     * @param annexed Es el nombre del anexo que se va a crear.
     * @return  annexedFile Es el anexo como tal.
     **/
-    public function saveFile($annexedFile, $nameFile){
+    public function saveFile($annexedFile, $nameFile, $texto, $numberAnnexed){
+
+        //Se guardan fragmentos de JSON en en un array para su posterior guardado
+        $vueltasACortarElJson = intval(strlen($texto) / 200);
+        $inicio = 0;
+        $res = [];
+        for($j = 0; $j <= $vueltasACortarElJson; $j++){
+            $res[$j] = substr($texto, $inicio, 200);
+            $inicio = $inicio + 200;
+        }
+
+        //Se obtiene el ultimo parent_id, esto para insertar esta nueva tanta de registros bajo ese parent_id
+        $parent_id = (Annexed::max('parent_id') + 1);
+
+        //Se almacena en BD
+        for($k = 0; $k < sizeof($res); $k++){
+            $annexes = Annexed::create([
+                'user_id' => Auth::id(),
+                'area_id' => 2,
+                'parent_id' => $parent_id,
+                'annexed_catalog_id' => $numberAnnexed,
+                'content' => $res[$k],
+                'status' => 1
+            ]);
+        }
+
         // Crea la instancia de Write para descargar el archivo
         $writer = new Xlsx($annexedFile);
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment; filename="'. urlencode($nameFile).'"');
         $writer->save('php://output');
-
-        //Se guarda en BD
     }
 
 

@@ -208,7 +208,9 @@
                 "CUMPLE CON LAS ESPECIFICACIONES DE LA LEY ORGANICA MUNICIPAL",
                 "CUMPLE CON LAS ESPECIFICACIONES DE MARCO LOGICO"
             ]
-        }
+        },
+        "texto": null,
+        "numberAnnexed": 1
     }
 
     function addBody1Annexed1(){
@@ -286,20 +288,23 @@
             }
         });
         constructDataAnnexed1();
+        jsonComplete.texto = JSON.stringify(jsonComplete);
+        console.log(jsonComplete);
         $.ajax({
             type: 'POST',
             url: "/create_annexed",
             data: { jsonComplete },
-            xhrFields: {
-                responseType: 'blob'
-            },
+            // xhrFields: {
+            //     responseType: 'blob'
+            // },
             success: function(response) {
-                $('#Exportar').prop('disabled', false);
-                var blob = new Blob([response]);
-                var link = document.createElement('a');
-                link.href = window.URL.createObjectURL(blob);
-                link.download = "Anexo 1 - " + getCurrentDate() + ".xlsx";
-                link.click();
+                console.log(response);
+                // $('#Exportar').prop('disabled', false);
+                // var blob = new Blob([response]);
+                // var link = document.createElement('a');
+                // link.href = window.URL.createObjectURL(blob);
+                // link.download = "Anexo 1 - " + getCurrentDate() + ".xlsx";
+                // link.click();
             },
             error: function(response) {
                 console.log("ERROR");
