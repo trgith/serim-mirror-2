@@ -167,3 +167,37 @@ function changeMunicipalities(input) {
     $('#region_select').prop("disabled", false);
     $('.mostrar-' + $(input).val()).show();
 }
+
+function getAnnexeds() {
+
+}
+
+
+function showAnnxeds(idDependency) {
+    $("#list_annexeds").fadeIn('slow');
+    $.ajax({
+        type: "get",
+        url: "/obtener_anexos",
+        data: { idDependency: idDependency },
+        success: function(data) {
+            // console.log(data);
+            if (data) {
+                console.log(data.data[0].annexeds);
+                for (var i = 0; i < data.data[0].annexeds.length; i++) {
+                    $('#row').append('<input type="checkbox" /> ' + data.data[0].annexeds[i].name + '<br />');
+                }
+            } else {
+
+            }
+
+        },
+        error: function(response) {
+
+        }
+    });
+}
+
+function hideAnnexed() {
+    $("#hide_annexeds").fadeOut('slow');
+    $("#list_annexeds").fadeOut('slow');
+}

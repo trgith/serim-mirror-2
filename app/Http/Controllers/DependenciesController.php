@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DB;
 use Carbon\Carbon;
+use App\Models\Area;
 use App\Models\Dependency;
 use App\Models\Region;
 use App\Models\Municipality;
@@ -14,11 +15,13 @@ class DependenciesController extends Controller
 {
     public function getViewDependency()
     {
+
         $dependencies = Dependency::all('id', 'name_dependency', 'address', 'exterior_number', 'interior_number', 'telephone');
         $regions = Region::all('id', 'region', 'status');
         $municipalities = Municipality::all('id', 'municipality', 'region_id');
+        $areas = Area::all();
 
-        return view('dashboard.organ_control.module_dependencies.dependency', compact('dependencies', 'regions', 'municipalities'));
+        return view('dashboard.organ_control.module_dependencies.dependency', compact('dependencies', 'regions', 'municipalities','areas'));
 
     }
 
@@ -85,11 +88,10 @@ class DependenciesController extends Controller
         }
     }
 
-    public function getAreas(Request $request){
+    public function getAnnexeds(Request $request){
         $annexes = Dependency::where('id', $request->input('idDependency'))
             ->with('annexeds.areas')
             ->get();
             return response()->json(['status' => true, 'data' => $annexes]);
     }
-
 }

@@ -35,12 +35,8 @@ class ContraloriaController extends Controller
         ->where('a.id', '=', Auth::user()->id)
         ->get(); */
 
-        $data = DB::table("dependencies as a")
-            ->selectRaw('a.name_dependency')
 
-            ->get()->dd();
-
-          //DB::raw("(SELECT b.annexed_catalog_id FROM annexed_catalog_dependencies as b WHERE b.dependency_id = dependencies.id)"))
+        //DB::raw("(SELECT b.annexed_catalog_id FROM annexed_catalog_dependencies as b WHERE b.dependency_id = dependencies.id)"))
         /* $dependencies = Dependency::all();
         $annexes = Dependency::with('annexeds', 'annexeds.areas')->get();
  */
@@ -48,6 +44,11 @@ class ContraloriaController extends Controller
             $annexes[$i]['areas'] = AnnexedCatalogDependency::where('dependency_id', '=', $annexes[$i]->id)->get();
         } */
 
+        $data = DB::table('dependencies as a')
+            ->join('annexed_catalog_dependencies as b', 'a.id', 'b.dependency_id')
+            ->join('annexed_catalogs as c', 'c.id', 'b.annexed_catalog_id')
+            ->join('annexed_catalog_areas as d', 'c.id', 'd.annexed_catalog_id')
+            ->get();
 
 
 

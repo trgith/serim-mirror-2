@@ -164,6 +164,8 @@ Route::group(['middleware' => ['get.menu']], function () {
         Route::get('/asignacion_anexos', 'ContraloriaController@getViewAssignedAnnexed');
         Route::get('/gestion_dependencias', 'DependenciesController@getViewDependency');
 
+        Route::get('/obtener_anexos', 'DependenciesController@getAnnexeds');
+
 
         Route::post('/registrar_dependencia', 'DependenciesController@storeDependency');
         Route::put('/editar_dependencia/{id}', 'DependenciesController@updateDependency');
