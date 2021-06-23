@@ -38,7 +38,8 @@ class DatabaseSeeder extends Seeder
             DependencySeeder::class,
             AreaSeeder::class,
             AnnexedCatalogSeeder::class,
-            AnnexedCatalogAreaSeeder::class
+            AnnexedCatalogAreaSeeder::class,
+            AnnexedCatalogDependencySeeder::class
         ]);
     }
 }

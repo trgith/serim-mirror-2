@@ -15,9 +15,7 @@ class DependenciesController extends Controller
     public function getViewDependency()
     {
         $dependencies = Dependency::all('id', 'name_dependency', 'address', 'exterior_number', 'interior_number', 'telephone');
-
         $regions = Region::all('id', 'region', 'status');
-
         $municipalities = Municipality::all('id', 'municipality', 'region_id');
 
         return view('dashboard.organ_control.module_dependencies.dependency', compact('dependencies', 'regions', 'municipalities'));
@@ -85,6 +83,13 @@ class DependenciesController extends Controller
         } else {
             return response()->json(['status' => false, 'message' => 'No se encuentra ninguna dependencia registrada']);
         }
+    }
+
+    public function getAreas(Request $request){
+        $annexes = Dependency::where('id', $request->input('idDependency'))
+            ->with('annexeds.areas')
+            ->get();
+            return response()->json(['status' => true, 'data' => $annexes]);
     }
 
 }

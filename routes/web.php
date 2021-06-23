@@ -144,11 +144,11 @@ Route::group(['middleware' => ['get.menu']], function () {
         Route::get('/municipalities/{id}', 'MunicipalitiesController@getViewMunicipalityForRegion');
         Route::get('/municipio_anexo', 'MunicipalitiesController@getViewMunicipalityAnnexed');
 
-        Route::get('/gestion_dependencias', 'DependenciesController@getViewDependency');
+/*         Route::get('/gestion_dependencias', 'DependenciesController@getViewDependency');
         Route::post('/registrar_dependencia', 'DependenciesController@storeDependency');
         Route::put('/editar_dependencia/{id}', 'DependenciesController@updateDependency');
         Route::get('/editar_dependencia/{id}', 'DependenciesController@editViewDependency');
-        Route::get('/lista_dependencias', 'DependenciesController@getListDependencies');
+        Route::get('/lista_dependencias', 'DependenciesController@getListDependencies'); */
         Route::get('/gestion_empleados', 'EmployeesController@getViewEmployee');
     });
 
@@ -162,6 +162,15 @@ Route::group(['middleware' => ['get.menu']], function () {
         Route::get('/subir_imagen', 'ContraloriaController@getUpLoadImagenView');
         Route::post('/actualizar_imagen/', 'ContraloriaController@uploadImagen');
         Route::get('/asignacion_anexos', 'ContraloriaController@getViewAssignedAnnexed');
+        Route::get('/gestion_dependencias', 'DependenciesController@getViewDependency');
+
+
+        Route::post('/registrar_dependencia', 'DependenciesController@storeDependency');
+        Route::put('/editar_dependencia/{id}', 'DependenciesController@updateDependency');
+        Route::get('/editar_dependencia/{id}', 'DependenciesController@editViewDependency');
+        Route::get('/lista_dependencias', 'DependenciesController@getListDependencies');
+
+        Route::get('/getAreasFromDependency', 'DependenciesController@getAreas');
     });
 
     Route::group(['middleware' => ['role:tesoreria']], function() {

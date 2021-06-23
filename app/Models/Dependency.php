@@ -35,6 +35,6 @@ class Dependency extends Model
 
     public function annexeds()
     {
-        return $this->belongsToMany(AnnexedCatalog::class, 'annexed_catalog_catalog');
+        return $this->belongsToMany(AnnexedCatalog::class, 'annexed_catalog_dependencies');
     }
 }

@@ -180,9 +180,9 @@ class MenusTableSeeder extends Seeder
         $id = $this->insertTitle('auditoria', 'CONTROL DE REGIONES');
         $id = $this->insertLink('auditoria', 'Control de Regiones', '/control_regiones', 'cil-institution');
 
-        $id = $this->insertTitle('auditoria', 'MÓDULO DE DEPENDENCIAS');
+/*      $id = $this->insertTitle('auditoria', 'MÓDULO DE DEPENDENCIAS');
         $id = $this->insertLink('auditoria', 'Gestión de Dependencias', '/gestion_dependencias', 'cil-home');
-
+ */
         $id = $this->insertTitle('auditoria', 'MÓDULO DE ANEXOS');
         $id = $this->insertLink('auditoria', 'Anexos', '/anexos', 'cil-file');
 
@@ -192,7 +192,11 @@ class MenusTableSeeder extends Seeder
          */
 
         $id = $this->insertTitle('contraloria', 'MÓDULO CONTRALORIA');
+
+        $id = $this->insertLink('contraloria', 'Asignación de Dependencias', '/gestion_dependencias', 'cil-home');
         $id = $this->insertLink('contraloria', 'Control de Dependencias', '/control_dependencias', 'cil-home');
+
+
         $id = $this->insertLink('contraloria', 'Subir Imagen', '/subir_imagen', 'cil-file');
 
         $id = $this->insertTitle('contraloria', 'MÓDULO ASIGNACIÓN');

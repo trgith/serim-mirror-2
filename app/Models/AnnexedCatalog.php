@@ -27,6 +27,6 @@ class AnnexedCatalog extends Model
 
     public function dependencies()
     {
-        return $this->belongsToMany(Dependency::class, 'annexed_catalog_dependency');
+        return $this->belongsToMany(Dependency::class, 'annexed_catalog_dependencies');
     }
 }
