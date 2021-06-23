@@ -83,11 +83,13 @@
             </div>
         </div>
 
-        <div class="row">
+
+
+        {{-- <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <div class="card">
                     <div class="card-header card__header-modified">
-                        <h2 class="users__title">Listado de dependencia registrados</h2>
+                        <h2 class="users__title">Lista de Anexos</h2>
                     </div>
 
                     <div class="card-body">
@@ -120,7 +122,80 @@
                     </div>
                 </div>
             </div>
+        </div> --}}
+
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="card">
+
+                    <div class="card-header card__header-modified">
+                        <h2 class="users__title">Lista de Areas</h2>
+                    </div>
+
+                    <div class="card-body d-flex flex-wrap justify-content-around">
+                        @foreach ($areas as $area)
+                            <div class="card text-white bg-warning bg-warning-modified mb-3" style="width: 25rem;">
+                                <div class="card-header"><i class="cil-institution pr-3 control__municipality"></i></div>
+                                <div class="card-body">
+                                <h2 class="card-title">{{$area->area}}</h2>
+                                    <button class="btn btn-warning d-flex ml-auto" style="color: #fff" onclick="showAnnxeds({{$area->id}})" >Ver anexos</button>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <div class="row" id="list_annexeds">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="card">
+                    <div class="card-header card__header-modified d-flex justify-content-between">
+                        <h2 class="users__title">Lista de Anexos</h2>
+                        <button class="btn btn-secondary" onclick="hideAnnexed()">Cerrar</button>
+                    </div>
+
+                    <div class="card-body">
+                        <div id="row">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- <div class="row">
+            @foreach($areas as $area)
+            <div class="col-3">
+                <div class="card">
+                    <div class="card-header card__header-modified card__header-h d-flex align-items-center ">
+                        <i class="cil-institution pr-3 control__municipality"></i>
+                        <h3 class="users__title text-white users__title-modified"></h3>
+                        <button class="ml-auto btn btn-warning">Ver Anexos</button>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="municipality__percentage">
+                            <h5>Porcentaje</h5>
+                              <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+                            </div><div class="progress">
+
+                            <br>
+                            <div class="control__inou">
+                                <h5>Presidente Municipal Entrante</h5>
+                                <h5>Juan Perez</h5>
+                                <br>
+                                <h5>Presidente Municipal Saliente</h5>
+                                <h5>Raul Perez</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        @endforeach
+
+        </div> --}}
     </div>
 </div>
 @endsection

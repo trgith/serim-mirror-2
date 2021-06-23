@@ -20690,3 +20690,11 @@ body {
 .card__header-h {
     height: 10vh;
 }
+
+.bg-warning-modified {
+    background-color: #d81e50 !important;
+}
+
+#list_annexeds {
+    display: none;
+}
