@@ -50,49 +50,42 @@
         <!-- Card de Areas -->
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                @foreach($annexes as $annexed)
-                    <div class="card">
+                    <div class="card" id="CardAreas">
                         <div class="card-header card__header-modified">
-                            <h3 class="users__title">Areas</h3>
+                            <h3 class="users__title" id="TituloDeArea">Areas</h3>
                         </div>
-
                         <div class="card-body">
-                            <div class="row">
+                            <div class="row" id="CuerpoParaPegarAreas">
 
-                                @foreach ($annexed->areas as $area)
-                                    <div class="col-md-3 mb-3">
-                                        <div class="card text-white h-100 anexos" style="background-color: #445554;" id="">
-                                            <div class="card-body">
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <h2 class="users__title">
-
-                                                        </h2>
-                                                    </div>
+                                {{-- <!-- Card de Area -->
+                                <div class="col-md-3 mb-3">
+                                    <div class="card text-white h-100 anexos" style="background-color: #445554;">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <h2 class="users__title">
+                                                        Nombre
+                                                    </h2>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <p class="card-text">{{ $area-> }}</p>
-                                                    </div>
-                                                </div>
-                                                <br>
-                                                <div class="row">
-                                                    <div class="col-sm-12 text-right">
-                                                        <button id="" class="btn btn-danger">
-                                                            <i class="cil-search"></i>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p class="card-text">
+                                                        <button class="btn btn-info">
+                                                            Ver Anexos
                                                         </button>
-                                                    </div>
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                @endforeach
-
+                                </div>
+                                <!-- Card de Area --> --}}
 
                             </div>
                         </div>
                     </div>
-                @endforeach
             </div>
         </div>
         <!-- Card de Areas -->
@@ -100,13 +93,21 @@
         <!-- Card de Anexos -->
         <div class="row">
             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <div class="card anexosHide">
+                <div class="card" id="CardAnexo">
                     <div class="card-header card__header-modified">
-                        <h3 class="users__title">Anexos de la Dependencia</h3>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h3 class="users__title" id="TituloDeAnexo">Anexos</h3>
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <button onclick="hideAnexos()" class="btn btn-secondary">Cerrar</button>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-3 mb-3">
+                        <div class="row" id="CuerpoParaPegarAnexos">
+
+                            {{-- <div class="col-md-3 mb-3">
                                 <div class="card text-white h-100 anexos" style="background-color: #445554;">
                                     <div class="card-body">
                                         <div class="row">
@@ -131,13 +132,18 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Card de Anexos -->
+
+        <!-- Card de Detalles -->
+
+        <!-- Card de Detalles -->
 
 
     </div>

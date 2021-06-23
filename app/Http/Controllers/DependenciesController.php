@@ -6,6 +6,8 @@ use DB;
 use Carbon\Carbon;
 use App\Models\Dependency;
 use App\Models\Region;
+use App\Models\Area;
+use App\Models\Annexed;
 use App\Models\Municipality;
 use Illuminate\Http\Request;
 use App\Http\Requests\DependencyRequest;
@@ -86,10 +88,15 @@ class DependenciesController extends Controller
     }
 
     public function getAreas(Request $request){
-        $annexes = Dependency::where('id', $request->input('idDependency'))
+        $areas = Dependency::where('id', $request->input('idDependency'))
             ->with('annexeds.areas')
             ->get();
-            return response()->json(['status' => true, 'data' => $annexes]);
+            return response()->json(['status' => true, 'data' => $areas]);
+    }
+
+    public function getAnnexes(Request $request){
+        $annexes = Area::where('id', $request->input('idArea'))->with('annexes')->get();
+        return response()->json(['status' => true, 'data' => $annexes]);
     }
 
 }

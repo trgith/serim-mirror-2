@@ -171,6 +171,7 @@ Route::group(['middleware' => ['get.menu']], function () {
         Route::get('/lista_dependencias', 'DependenciesController@getListDependencies');
 
         Route::get('/getAreasFromDependency', 'DependenciesController@getAreas');
+        Route::get('/getAnnexesFromAreas', 'DependenciesController@getAnnexes');
     });
 
     Route::group(['middleware' => ['role:tesoreria']], function() {
