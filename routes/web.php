@@ -158,10 +158,9 @@ Route::group(['middleware' => ['get.menu']], function () {
     });
 
     Route::group(['middleware' => ['role:contraloria']], function() {
-        Route::get('/control_municipios', 'ContraloriaController@getViewMunicipalities');
-        Route::get('/control_dependencias', 'ContraloriaController@getViewDependencies');
-        Route::get('/control_usuarios', 'ContraloriaController@getViewUsers');
-
+        Route::get('/control_dependencias', 'ContraloriaController@getViewDependency');
+        Route::get('/subir_imagen', 'ContraloriaController@getUpLoadImagenView');
+        Route::post('/actualizar_imagen/', 'ContraloriaController@uploadImagen');
     });
 
     Route::group(['middleware' => ['role:tesoreria']], function() {

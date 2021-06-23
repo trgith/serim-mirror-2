@@ -30,12 +30,13 @@ function registerUsers() {
     var password = $('#users_password').val();
     var action_user = $('input[name="au"]:checked').val();
     var menuroles = $('#menuroles').val();
+    var municipality_id = $('#municipality_id').val();
 
     $.ajax({
         type: 'POST',
         url: '/registrar_usuario',
         dataType: "json",
-        data: { name: name, email: email, password: password, action_user: action_user, menuroles: menuroles },
+        data: { name: name, email: email, password: password, action_user: action_user, menuroles: menuroles, municipality_id: municipality_id },
 
         success: function(data) {
             if (data) {
@@ -53,6 +54,8 @@ function registerUsers() {
                 $("#users_password").val('');
                 $("#users_delivery").val('');
                 $("#menuroles").val('');
+                $("#municipality_id").val('');
+
             } else {
                 console.log("Ha ocurrido un error con el servidor");
             }
@@ -192,4 +195,14 @@ function cleanMessagePassword() {
 
 function cleanMessageRoles() {
     $("#error_menuroles").html("");
+}
+
+function cleanDependency() {
+    $("#error_dependency").html("");
+}
+
+function changeMunicipalities(input) {
+    $('.hide').hide();
+    $('#region_select').prop("disabled", false);
+    $('.mostrar-' + $(input).val()).show();
 }

@@ -80,6 +80,29 @@
                             </div>
                         </div>
 
+                        <hr>
+
+                        <div class="form-group w-100">
+                            <label for="" class="forms__label forms__especification">Elige una Región</label>
+                            <select class="form-control" onchange="changeMunicipalities(this)">
+                                @foreach($regions as $region)
+                                    <option value="{{ $region['id'] }}">{{ $region['region'] }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="form-group w-100">
+                            <label for="" class="forms__label forms__especification">Elige un Municipio</label>
+                            <select id="municipality_id" class="form-control">
+                                <option selected disabled> Seleccionar Municipio...</option>
+                                @foreach($municipalities as $municipality)
+                                    <option value="{{ $municipality['id'] }}" class="hide mostrar-{{ $municipality['region_id'] }}">{{ $municipality['municipality'] }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+
+
                         <hr class="hr__bottom">
                         <button class="btn btn-primary form__buttom" id="form_buttom_users" onclick="registerUsers()">Registrar usuario</button>
 

@@ -134,7 +134,7 @@ return [
         ],
         'email' => [
             'unique' => 'El correo electronico ya existe favor de ingresar otro'
-        ]
+        ],
     ],
 
 

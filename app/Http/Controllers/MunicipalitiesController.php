@@ -27,14 +27,12 @@ class MunicipalitiesController extends Controller
     {
 
         $muncipalitiesByRegion = DB::table('users as a')
-            ->join('regions as b', 'b.id', 'a.region_id')
-            ->join('municipalities as c', 'b.id', 'c.region_id')
-            ->select('c.municipality')
+            ->join('municipalities as b', 'b.id', 'a.municipality_id')
+            ->join('regions as c', 'c.id', 'b.region_id')
+            ->select('b.municipality')
             ->where('a.menuroles', '=', 'user,auditoria')
-            ->where('b.status', '=', 0)
             ->where('a.id', '=', Auth::user()->id)
             ->get();
-
 
         $regions = Region::all('id','region');
         return view('dashboard.organ_control.module_municipalities.municipality', compact('regions'));

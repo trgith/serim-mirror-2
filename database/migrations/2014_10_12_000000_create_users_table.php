@@ -24,11 +24,11 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
-            $table->unsignedBigInteger('region_id')->nullable();
+            $table->unsignedBigInteger('municipality_id')->nullable();
         });
 
         Schema::table('users', function (Blueprint $table) {
-            $table->foreign('region_id')->references('id')->on('regions');
+            $table->foreign('municipality_id')->references('id')->on('municipalities');
         });
     }
 
