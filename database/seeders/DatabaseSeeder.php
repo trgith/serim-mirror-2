@@ -36,6 +36,8 @@ class DatabaseSeeder extends Seeder
             RegionSeeder::class,
             MunicipalitiesSeeder::class,
             AreaSeeder::class,
+            AnnexedCatalogSeeder::class,
+            AnnexedCatalogAreaSeeder::class
         ]);
     }
 }

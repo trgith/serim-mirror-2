@@ -15,7 +15,7 @@ class AreaSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('area')->insert([
+        DB::table('areas')->insert([
             ['area' => 'Presidente', 'created_at' => Carbon::now()],
             ['area' => 'Contraloria', 'created_at' => Carbon::now()],
             ['area' => 'Tesoreria/Administración', 'created_at' => Carbon::now()],

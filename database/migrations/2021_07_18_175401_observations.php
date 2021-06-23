@@ -16,13 +16,13 @@ class Observations extends Migration
         Schema::create('observations', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('observation_id');
-            $table->unsignedBigInteger('annexed_id');
+            $table->integer('annexed_id')->unsigned();
             $table->text('message');
             $table->timestamps();
         });
 
         Schema::table('observations', function (Blueprint $table) {
-            $table->foreign('annexed_id')->references('id')->on('annexed');
+            $table->foreign('annexed_id')->references('id')->on('annexeds');
             $table->foreign('observation_id')->references('id')->on('observations');
         });
     }

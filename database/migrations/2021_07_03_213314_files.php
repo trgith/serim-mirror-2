@@ -16,7 +16,7 @@ class Files extends Migration
         Schema::create('files', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('annexed_id');
+            $table->integer('annexed_id')->unsigned();
             $table->string('url');
             $table->smallInteger('type_file');
             $table->timestamps();
@@ -24,7 +24,7 @@ class Files extends Migration
 
         Schema::table('files', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('annexed_id')->references('id')->on('annexed');
+            $table->foreign('annexed_id')->references('id')->on('annexeds');
         });
     }
 

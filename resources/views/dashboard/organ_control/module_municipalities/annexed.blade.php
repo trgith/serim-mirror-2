@@ -15,25 +15,60 @@
                         <table id="annexed_table">
                             <thead>
                                 <tr>
-                                    <th>Número</th>
-                                    <th>Nombre</th>
+                                    <th>Núm Anexo</th>
+                                    <th style="width: 25%">Nombre</th>
                                     <th>Area</th>
                                     <th>Observaciones</th>
+                                    <th>Usuario</th>
                                     <th>Estatus</th>
                                     <th>Descargar Anexo</th>
                                 </tr>
                             </thead>
 
                             <tbody>
+                                @foreach($annexes as $annexed)
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td class="text-center">{{ $annexed->annexed_catalog_annexes->number }}</td>
+                                    <td>{{ $annexed->annexed_catalog_annexes->name }}</td>
+                                    <td>{{ $annexed->areas->area }}</td>
+                                    <td class="text-center">
+                                        <button type="button" style="background-color: white; color: black; border: none;" data-toggle="modal" data-target="#observations-{{ $annexed->user->id }}">
+                                            <i style="font-size: 1.5rem;" class="cil-zoom"></i>
+                                        </button>
+                                    </td>
+                                    <td class="text-center">
+                                        <button type="button" style="background-color: white; color: black; border: none;" data-toggle="modal" data-target="#userDetails-{{ $annexed->user->id }}">
+                                            <i style="font-size: 1.5rem;" class="cil-user"></i>
+                                        </button>
+                                    </td>
+                                    <td class="text-center">
+                                        @switch($annexed->status)
+                                            @case(0)
+                                                <h4><span class="badge badge-danger">Vacio</span></h4>
+                                                @break
+                                            @case(1)
+                                                <h4><span class="badge badge-warning">En Proceso</span></h4>
+                                                @break
+                                            @case(2)
+                                                <h4><span class="badge badge-info">Por Autorizar</span></h4>
+                                                @break
+                                            @case(3)
+                                                <h4><span class="badge badge-succes">Autorizado</span></h4>
+                                                @break
+                                            @default
 
+                                        @endswitch
+                                    </td>
+                                    <td class="text-center">
+                                        <button type="button" style="background-color: white; color: black; border: none;">
+                                            <i style="font-size: 1.5rem;" class="cil-arrow-thick-to-bottom"></i>
+                                        </button>
+                                    </td>
                                 </tr>
+
+                                @include('dashboard.organ_control.module_municipalities.observations')
+                                @include('dashboard.organ_control.module_municipalities.user_details')
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -59,7 +94,7 @@
                             @php
                             $i = 1;
                             @endphp
-                            @foreach($descriptions as $desc)
+                            @foreach($annexesCatalog as $ac)
                             <div class="col-md-3 mb-3">
                                 <!-- style="background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIHhs99QyEtdjlYYK44MU0b3LKApyO83oA9Q&usqp=CAU)" -->
                                 <div class="card text-white mt-5 h-100" style="background-color: #445554;">
@@ -75,7 +110,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <p class="card-text">{{$desc}}</p>
+                                                <p class="card-text">{{ $ac->name }}</p>
                                             </div>
                                         </div>
                                         <br>

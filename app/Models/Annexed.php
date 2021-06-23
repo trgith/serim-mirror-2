@@ -11,12 +11,26 @@ class Annexed extends Model
 
     protected $fillable = [
         'user_id',
-        'name'
+        'area_id',
+        'parent_id',
+        'annexed_catalog_id',
+        'content',
+        'status'
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function areas()
+    {
+        return $this->belongsTo(Area::class, 'area_id');
+    }
+
+    public function annexed_catalog_annexes()
+    {
+        return $this->belongsTo(AnnexedCatalog::class, 'annexed_catalog_id');
     }
 
     public function depencies_annexes()

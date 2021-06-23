@@ -15,13 +15,13 @@ class AnnexedProceedings extends Migration
     {
         Schema::create('annexed_proceedings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('annexed_id');
+            $table->integer('annexed_id')->unsigned();
             $table->unsignedBigInteger('proceeding_id');
             $table->timestamps();
         });
 
         Schema::table('annexed_proceedings', function (Blueprint $table) {
-            $table->foreign('annexed_id')->references('id')->on('annexed');
+            $table->foreign('annexed_id')->references('id')->on('annexeds');
             $table->foreign('proceeding_id')->references('id')->on('proceedings');
         });
     }

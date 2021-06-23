@@ -8,4 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class AnnexedCatalog extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'number',
+        'status'
+    ];
+
+    public function annexed()
+    {
+        return $this->hasMany(Annexed::class);
+    }
+
+    public function areas()
+    {
+        return $this->belongsToMany(Area::class, 'annexed_catalog_areas');
+    }
 }

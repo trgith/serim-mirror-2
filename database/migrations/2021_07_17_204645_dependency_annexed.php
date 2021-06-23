@@ -16,14 +16,14 @@ class DependencyAnnexed extends Migration
         Schema::create('dependency_annexed', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('dependency_id');
-            $table->unsignedBigInteger('annexed_id');
+            $table->integer('annexed_id')->unsigned();;
             $table->smallInteger('status');
             $table->timestamps();
         });
 
         Schema::table('dependency_annexed', function (Blueprint $table) {
             $table->foreign('dependency_id')->references('id')->on('dependencies');
-            $table->foreign('annexed_id')->references('id')->on('annexed');
+            $table->foreign('annexed_id')->references('id')->on('annexeds');
         });
     }
 

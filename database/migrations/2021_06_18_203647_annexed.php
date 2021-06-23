@@ -13,16 +13,21 @@ class Annexed extends Migration
      */
     public function up()
     {
-        Schema::create('annexed', function (Blueprint $table) {
-            $table->id();
+        Schema::create('annexeds', function (Blueprint $table) {
+            $table->increments('id');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('annexed_catalog_id');
+            $table->unsignedBigInteger('parent_id');
+            $table->integer('area_id')->unsigned();
+            $table->string('content', 250);
+            $table->integer('annexed_catalog_id')->unsigned();
+            $table->smallInteger('status')->nullable()->default(1);
             $table->timestamps();
         });
 
-        Schema::table('annexed', function (Blueprint $table) {
+        Schema::table('annexeds', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('annexed_catalog_id')->references('id')->on('annexed_catalog');
+            $table->foreign('area_id')->references('id')->on('areas');
+            $table->foreign('annexed_catalog_id')->references('id')->on('annexed_catalogs');
         });
 
     }
@@ -34,6 +39,6 @@ class Annexed extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('annexed');
+        Schema::dropIfExists('annexeds');
     }
 }
