@@ -23,4 +23,5 @@ class Municipality extends Model
     {
         return $this->hasMany(Dependency::class);
     }
+
 }

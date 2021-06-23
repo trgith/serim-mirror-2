@@ -60,7 +60,9 @@ class ContraloriaController extends Controller
 
     public function getViewAssignedAnnexed()
     {
+        $municipalities = Municipality::all('id','municipality');
 
+        return view('dashboard.contraloria.asignacion_anexos', compact('municipalities'));
     }
 
 

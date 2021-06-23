@@ -20,10 +20,6 @@ class AnnexedCatalog extends Migration
             $table->smallInteger('status');
             $table->timestamps();
         });
-
-        Schema::table('annexed_catalogs', function(Blueprint $table) {
-            //
-        });
     }
 
     /**

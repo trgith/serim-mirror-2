@@ -24,4 +24,9 @@ class AnnexedCatalog extends Model
     {
         return $this->belongsToMany(Area::class, 'annexed_catalog_areas');
     }
+
+    public function dependencies()
+    {
+        return $this->belongsToMany(Dependency::class, 'annexed_catalog_dependency');
+    }
 }

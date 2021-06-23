@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
             EmailSeeder::class,
             RegionSeeder::class,
             MunicipalitiesSeeder::class,
+            DependencySeeder::class,
             AreaSeeder::class,
             AnnexedCatalogSeeder::class,
             AnnexedCatalogAreaSeeder::class

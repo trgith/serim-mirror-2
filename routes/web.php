@@ -161,6 +161,7 @@ Route::group(['middleware' => ['get.menu']], function () {
         Route::get('/control_dependencias', 'ContraloriaController@getViewDependency');
         Route::get('/subir_imagen', 'ContraloriaController@getUpLoadImagenView');
         Route::post('/actualizar_imagen/', 'ContraloriaController@uploadImagen');
+        Route::get('/asignacion_anexos', 'ContraloriaController@getViewAssignedAnnexed');
     });
 
     Route::group(['middleware' => ['role:tesoreria']], function() {
