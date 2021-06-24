@@ -12,45 +12,48 @@ $(document).ready(function() {
     $("#CardAreas").hide();
 });
 
+<<<<<<< HEAD
 var Actual = { "ActualDependency": 0, "ActualArea": 0, "ActualAnnexed": 0 };
+=======
+    function uploadImage() {
+>>>>>>> origin/development
 
-function uploadImage() {
-
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
-        }
-    });
-    var id = $('#municipality_id').val();
-    $('#id').val(id);
-
-    var myForm = document.getElementById('myForm');
-    var formData = new FormData(myForm);
-    console.log(formData.get('image'));
-
-    $.ajax({
-        type: "POST",
-        url: "/actualizar_imagen/",
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function(data) {
-            if (data) {
-                $("#success").text(data.message).css('display', 'flex');
-
-                setTimeout(function() {
-                    $("#success").css("display", "none");
-                }, 4000);
-            } else {
-                console.log('Ocurrio un error con el servidor');
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
             }
-        },
-        error: function(response) {
-            $("#error_image").text(response.responseJSON.errors.image);
-        }
-    });
-}
+        });
+        var id = $('#municipality_id').val();
+        $('#id').val(id);
 
+        var myForm = document.getElementById('myForm');
+        var formData = new FormData(myForm);
+        console.log(formData.get('image'));
+
+        $.ajax({
+            type: "POST",
+            url: "/actualizar_imagen/",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                if (data) {
+                    $("#success").text(data.message).css('display', 'flex');
+
+                    setTimeout(function() {
+                        $("#success").css("display", "none");
+                    }, 4000);
+                } else {
+                    console.log('Ocurrio un error con el servidor');
+                }
+            },
+            error: function(response) {
+                $("#error_image").text(response.responseJSON.errors.image);
+            }
+        });
+    }
+
+<<<<<<< HEAD
 function showAreas(idDependency) {
     Actual['ActualDependency'] = idDependency;
     $.ajax({
@@ -59,6 +62,15 @@ function showAreas(idDependency) {
         data: { idDependency: idDependency },
         success: function(response) {
             console.log(response);
+=======
+    function showAreas(idDependency) {
+        $.ajax({
+            type: "GET",
+            url: "/getAreasFromDependency",
+            data: { idDependency: idDependency },
+            success: function(response) {
+
+>>>>>>> origin/development
             //Se agrega el titulo al card
             $('#TituloDeArea').empty();
             $('#TituloDeArea').append("Areas de " + response.data[0].name_dependency);
@@ -116,8 +128,76 @@ function showAreas(idDependency) {
             console.log('error');
             console.log(response);
         }
+<<<<<<< HEAD
     });
 }
+=======
+        });
+    }
+
+    function showAnexos(idArea, idDependency) {
+        $.ajax({
+            type: "GET",
+            url: "/getAnnexesFromAreas",
+            data: { idDependency: idDependency, idArea: idArea },
+            success: function(response) {
+                console.log(response);
+
+                //Se agrega el titulo al card
+                $('#TituloDeAnexo').empty();
+                $('#TituloDeAnexo').append("Anexos de ");
+
+                //Se traspasa el valor de los anexos a una variable auxiliar
+                var annexeds = response.data;
+
+                //Se pintan los anexos
+                $('#CuerpoParaPegarAnexos').empty();
+                for(var j = 0; j < annexeds.length; j++){
+                    $('#CuerpoParaPegarAnexos').append("<div class='col-md-3 mb-3'>" +
+                                                        "<div class='card text-white h-100 anexos' style='background-color: #445554;'>" +
+                                                            "<div class='card-body'>" +
+                                                                "<div class='progress'>" +
+                                                                    "<div class='progress-bar bg-danger' role='progressbar' style='width: 80%' aria-valuenow='80' aria-valuemin='0' aria-valuemax='100'></div>" +
+                                                                "</div>" +
+                                                                "<br>" +
+                                                                "<div class='row'>" +
+                                                                    "<div class='col-md-12'>" +
+                                                                        "<h2 class='users__title'>" +
+                                                                        "Anexo " + annexeds[j]['annexeds'][0]['number'] +
+                                                                        "</h2>" +
+                                                                        "<small>" + annexeds[j]['annexeds'][0]['name'] + "</small>" +
+                                                                    "</div>" +
+                                                                "</div>" +
+                                                                "<br>" +
+                                                                "<div class='row'>" +
+
+
+                                                                    "<div class='col-4'>" +
+                                                                        "<button class='btn btn-info btn-block' onclick='downloadAnexo(" + annexeds[j]['annexeds'][0]['number'] + ")'>" +
+                                                                            "<i class='cil-arrow-thick-to-bottom'></i>" +
+                                                                        "</button>" +
+                                                                    "</div>" +
+
+                                                                    "<div class='col-4'>" +
+                                                                        "<button class='btn btn-info btn-block' onclick='downloadAnexo(" + annexeds[j]['annexeds'][0]['number'] + ")'>" +
+                                                                            "<i class='cil-arrow-thick-to-bottom'></i>" +
+                                                                        "</button>" +
+                                                                    "</div>" +
+
+                                                                    "<div class='col-4'>" +
+                                                                        "<button class='btn btn-info btn-block' onclick='downloadAnexo(" + annexeds[j]['annexeds'][0]['number'] + ")'>" +
+                                                                            "<i class='cil-check-circle'></i>" +
+                                                                        "</button>" +
+                                                                    "</div>" +
+
+
+
+                                                                "</div>" +
+                                                            "</div>" +
+                                                        "</div>" +
+                                                    "</div>");
+                }
+>>>>>>> origin/development
 
 function showAnexos(idArea, idDependency) {
     Actual['ActualArea'] = idArea;
@@ -166,6 +246,7 @@ function showAnexos(idArea, idDependency) {
                     "</div>" +
                     "</div>");
             }
+<<<<<<< HEAD
 
             //Se muestra la card
             $("#CardAnexo").show();
@@ -180,3 +261,11 @@ function showAnexos(idArea, idDependency) {
 function hideAnexos() {
     $("#CardAnexo").hide();
 }
+=======
+        });
+    }
+
+    function hideAnexos(){
+        $("#CardAnexo").hide();
+    }
+>>>>>>> origin/development

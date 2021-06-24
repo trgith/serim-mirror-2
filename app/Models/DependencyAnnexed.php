@@ -21,7 +21,7 @@ class DependencyAnnexed extends Model
 
     public function annexed()
     {
-        return $this->belongsTo(Annexed::class);
+        return $this->belongsTo(AnnexedCatalog::class);
     }
 
     public function dependency()
