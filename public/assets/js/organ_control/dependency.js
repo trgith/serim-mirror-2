@@ -17,6 +17,11 @@ $(document).ready(function() {
 
 });
 
+/*
+ * ! TODO Variable auxiliar para almacenar la asignacion de anexos en base
+ */
+var areaId = 0;
+
 function registerDependency() {
     $.ajaxSetup({
         headers: {
@@ -30,8 +35,8 @@ function registerDependency() {
     var interior_number = $("#interior_number").val();
     var telephone = $("#telephone").val();
     var municipality_id = $("#municipality_id").val();
+    var assignedAnnexesObject = constructAssignedAnnexesObject();
 
-    console.log(municipality_id);
     $.ajax({
         type: 'POST',
         url: '/registrar_dependencia',
@@ -42,11 +47,11 @@ function registerDependency() {
             exterior_number: exterior_number,
             interior_number: interior_number,
             telephone: telephone,
-            municipality_id: municipality_id
+            municipality_id: municipality_id,
+            assignedAnnexes: assignedAnnexesObject
         },
-
-
         success: function(data) {
+            console.log(data);
 
             if (data) {
                 $("#success").text(data.message).css('display', "flex");
@@ -66,7 +71,6 @@ function registerDependency() {
             }
 
             getDependencies();
-
         },
         error: function(response) {
             console.log(response);
@@ -168,31 +172,57 @@ function changeMunicipalities(input) {
     $('.mostrar-' + $(input).val()).show();
 }
 
-function getAnnexeds() {
+function constructAssignedAnnexesObject() {
+    //Array para contener todos los objetos de los anexos
+    var assignedAnnexesObjectArray = [];
 
+    //Se ciclan Areas, con el maximo numero de areas
+    for (var k = 0; k < 6; k++) {
+
+        //Ciclo que itera 35 veces los anexos, 35 es un numero estandar ya
+        for (var i = 0; i < 35; i++) {
+            //Si esta checkeado, lo guarda en un objeto y se pushea ese objeto en el array de arriba
+            if ($('#Annexed-AreaID-' + i).is(":checked")) {
+                var assignedAnnexesObject = {};
+                assignedAnnexesObject = { "numberAnnexed": i, "area_id": this.areaId };
+                assignedAnnexesObjectArray.push(assignedAnnexesObject);
+            }
+        }
+    }
+
+    //Retorna el array de objetos para mandarlos a BD
+    return assignedAnnexesObjectArray;
 }
 
 
-function showAnnxeds(idDependency) {
+function showAnnxeds(idArea) {
     $("#list_annexeds").fadeIn('slow');
+    //areaId es para guardar esa area en la BD cuando se asignen anexos
+    this.areaId = idArea;
     $.ajax({
         type: "get",
         url: "/obtener_anexos",
-        data: { idDependency: idDependency },
+        data: { idArea: idArea },
         success: function(data) {
-            // console.log(data);
+            console.log(data);
             if (data) {
-                console.log(data.data[0].annexeds);
-                for (var i = 0; i < data.data[0].annexeds.length; i++) {
-                    $('#row').append('<input type="checkbox" /> ' + data.data[0].annexeds[i].name + '<br />');
+                console.log(data.data[0].annexes);
+                $('#row').empty();
+                for (var i = 0; i < data.data[0].annexes.length; i++) {
+                    $('#row').append(
+                        '<div class="card card-modified-annexed">' +
+                        '<div class="card-body card-body-modified-annexed">' +
+                        '<input id="Annexed-' + data.data[0].annexes[i].number + '" type="checkbox" class="form-check-label" name="group"/> ' + data.data[0].annexes[i].name + '<br />' +
+                        '</div>' +
+                        '</div');
                 }
             } else {
-
+                console.log("Ocurrio un error con el servidor");
             }
 
         },
         error: function(response) {
-
+            console.log(response);
         }
     });
 }
@@ -201,3 +231,30 @@ function hideAnnexed() {
     $("#hide_annexeds").fadeOut('slow');
     $("#list_annexeds").fadeOut('slow');
 }
+
+
+$('#checkAll').click(function() {
+    $('input:checkbox').prop('checked', this.checked);
+});
+
+// function getAreasWithAnnexeds() {
+
+//     $.ajaxSetup({
+//         headers: {
+//             'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+//         }
+//     });
+
+//     $.ajax({
+//         type: "get",
+//         url: "/anexosAreas",
+//         dataType: "dataType",
+//         success: function(data) {
+//             console.log(response);
+//         },
+//         error: function() {
+
+//         }
+
+//     });
+// }

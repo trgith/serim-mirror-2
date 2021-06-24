@@ -164,8 +164,7 @@ Route::group(['middleware' => ['get.menu']], function () {
         Route::get('/asignacion_anexos', 'ContraloriaController@getViewAssignedAnnexed');
         Route::get('/gestion_dependencias', 'DependenciesController@getViewDependency');
 
-        Route::get('/obtener_anexos', 'DependenciesController@getAnnexeds');
-
+        Route::get('/obtener_anexos', 'DependenciesController@getAnnexes');
 
         Route::post('/registrar_dependencia', 'DependenciesController@storeDependency');
         Route::put('/editar_dependencia/{id}', 'DependenciesController@updateDependency');
@@ -174,6 +173,8 @@ Route::group(['middleware' => ['get.menu']], function () {
 
         Route::get('/getAreasFromDependency', 'DependenciesController@getAreas');
         Route::get('/getAnnexesFromAreas', 'DependenciesController@getAnnexes');
+
+        Route::get('/anexosAreas', 'DependenciesController@getAreasWithAnnexeds');
     });
 
     Route::group(['middleware' => ['role:tesoreria']], function() {

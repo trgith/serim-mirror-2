@@ -20698,3 +20698,23 @@ body {
 #list_annexeds {
     display: none;
 }
+
+.card-modified-annexed {
+    font: 700 .8rem 'Montserrat', sans-serif;
+    width: 30% !important;
+    border: 1px solid #d81e50;
+    color: #000;
+}
+
+.card-body-modified-annexed {
+    display: flex;
+    align-items: center;
+}
+
+.list__all {
+    width: 15%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+}
