@@ -8,6 +8,7 @@ use App\Models\Area;
 use App\Models\Dependency;
 use App\Models\Region;
 use App\Models\Annexed;
+use App\Models\AnnexedCatalogDependency;
 use App\Models\Municipality;
 use Illuminate\Http\Request;
 use App\Http\Requests\DependencyRequest;
@@ -90,11 +91,7 @@ class DependenciesController extends Controller
     }
 
     public function getAreas(Request $request){
-        $areas = Dependency::where('id', $request->input('idDependency'));
-    }
-
-    public function getAnnexeds(Request $request){
-        $annexes = Dependency::where('id', $request->input('idDependency'))
+        $areas = Dependency::where('id', $request->input('idDependency'))
             ->with('annexeds.areas')
             ->get();
             return response()->json(['status' => true, 'data' => $areas]);
@@ -102,6 +99,13 @@ class DependenciesController extends Controller
 
     public function getAnnexes(Request $request){
         $annexes = Area::where('id', $request->input('idArea'))->with('annexes')->get();
+        return response()->json(['status' => true, 'data' => $annexes]);
+    }
+
+    public function getAnnexesFromPivot(Request $request){
+        $idArea = $request->input('idArea');
+        $idDependency = $request->input('idDependency');
+        $annexes = AnnexedCatalogDependency::where('area_id', $idArea)->where('dependency_id', $idDependency)->with('annexeds')->with('areas')->get();
         return response()->json(['status' => true, 'data' => $annexes]);
     }
 }
