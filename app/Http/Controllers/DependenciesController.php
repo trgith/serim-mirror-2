@@ -12,7 +12,6 @@ use App\Models\Annexed;
 use App\Models\AnnexedCatalogDependency;
 use App\Models\Municipality;
 use Illuminate\Http\Request;
-use App\Models\AnnexedCatalogDependency;
 use App\Http\Requests\DependencyRequest;
 
 class DependenciesController extends Controller
@@ -116,7 +115,6 @@ class DependenciesController extends Controller
         return response()->json(['status' => true, 'data' => $annexes]);
     }
 
-<<<<<<< HEAD
 
     /**
      * !Función que asign los anexos
@@ -146,12 +144,12 @@ class DependenciesController extends Controller
     {
         $getAreasAnnexeds = Area::all()->with('annexed_catalog_areas');
         return response()->json(['status' => true, 'data'  => $getAreas]);
-=======
+    }
+
     public function getAnnexesFromPivot(Request $request){
         $idArea = $request->input('idArea');
         $idDependency = $request->input('idDependency');
         $annexes = AnnexedCatalogDependency::where('area_id', $idArea)->where('dependency_id', $idDependency)->with('annexeds')->with('areas')->get();
         return response()->json(['status' => true, 'data' => $annexes]);
->>>>>>> origin/development
     }
 }

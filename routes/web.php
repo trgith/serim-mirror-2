@@ -172,13 +172,10 @@ Route::group(['middleware' => ['get.menu']], function () {
         Route::get('/lista_dependencias', 'DependenciesController@getListDependencies');
 
         Route::get('/getAreasFromDependency', 'DependenciesController@getAreas');
-<<<<<<< HEAD
         Route::get('/getAnnexesFromAreas', 'DependenciesController@getAnnexes');
 
         Route::get('/anexosAreas', 'DependenciesController@getAreasWithAnnexeds');
-=======
         Route::get('/getAnnexesFromAreas', 'DependenciesController@getAnnexesFromPivot');
->>>>>>> origin/development
     });
 
     Route::group(['middleware' => ['role:tesoreria']], function() {
