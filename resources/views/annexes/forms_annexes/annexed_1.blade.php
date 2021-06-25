@@ -282,35 +282,36 @@
 
     function sendDataAnnexed1(){
         $('#Exportar').prop('disabled', true);
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
-            }
-        });
-        constructDataAnnexed1();
-        jsonComplete.texto = JSON.stringify(jsonComplete);
-        console.log(jsonComplete);
-        $.ajax({
-            type: 'POST',
-            url: "/create_annexed",
-            data: { jsonComplete },
-            // xhrFields: {
-            //     responseType: 'blob'
-            // },
-            success: function(response) {
-                console.log(response);
-                // $('#Exportar').prop('disabled', false);
-                // var blob = new Blob([response]);
-                // var link = document.createElement('a');
-                // link.href = window.URL.createObjectURL(blob);
-                // link.download = "Anexo 1 - " + getCurrentDate() + ".xlsx";
-                // link.click();
-            },
-            error: function(response) {
-                console.log("ERROR");
-                console.log(response);
-            }
-        });
+        console.log();
+        // $.ajaxSetup({
+        //     headers: {
+        //         'X-CSRF-TOKEN': jQuery('meta[name="csrf-token"]').attr('content')
+        //     }
+        // });
+        // constructDataAnnexed1();
+        // jsonComplete.texto = JSON.stringify(jsonComplete);
+        // console.log(jsonComplete);
+        // $.ajax({
+        //     type: 'POST',
+        //     url: "/create_annexed",
+        //     data: { jsonComplete },
+        //      xhrFields: {
+        //          responseType: 'blob'
+        //      },
+        //     success: function(response) {
+        //         console.log(response);
+        //          $('#Exportar').prop('disabled', false);
+        //          var blob = new Blob([response]);
+        //          var link = document.createElement('a');
+        //          link.href = window.URL.createObjectURL(blob);
+        //          link.download = "Anexo 1 - " + getCurrentDate() + ".xlsx";
+        //          link.click();
+        //     },
+        //     error: function(response) {
+        //         console.log("ERROR");
+        //         console.log(response);
+        //     }
+        // });
     }
 
 </script>

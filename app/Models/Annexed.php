@@ -11,7 +11,7 @@ class Annexed extends Model
 
     protected $fillable = [
         'user_id',
-        'area_id',
+        'annexed_',
         'parent_id',
         'annexed_catalog_id',
         'content',
@@ -21,11 +21,6 @@ class Annexed extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function areas()
-    {
-        return $this->belongsTo(Area::class, 'area_id');
     }
 
     public function annexed_catalog_annexes()

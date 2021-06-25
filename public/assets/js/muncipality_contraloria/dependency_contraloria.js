@@ -122,17 +122,17 @@ $(document).ready(function() {
             url: "/getAnnexesFromAreas",
             data: { idDependency: idDependency, idArea: idArea },
             success: function(response) {
-                console.log(response);
-
-                //Se agrega el titulo al card
-                $('#TituloDeAnexo').empty();
-                $('#TituloDeAnexo').append("Anexos de ");
 
                 //Se traspasa el valor de los anexos a una variable auxiliar
                 var annexeds = response.data;
 
+                //Se agrega el titulo al card
+                $('#TituloDeAnexo').empty();
+                $('#TituloDeAnexo').append("Anexos de Area de " + annexeds[0].areas[0]['area']);
+
                 //Se pintan los anexos
                 $('#CuerpoParaPegarAnexos').empty();
+                console.log(annexeds);
                 for(var j = 0; j < annexeds.length; j++){
                     $('#CuerpoParaPegarAnexos').append("<div class='col-md-3 mb-3'>" +
                                                         "<div class='card text-white h-100 anexos' style='background-color: #445554;'>" +
@@ -154,23 +154,22 @@ $(document).ready(function() {
 
 
                                                                     "<div class='col-4'>" +
-                                                                        "<button class='btn btn-info btn-block' onclick='downloadAnexo(" + annexeds[j]['annexeds'][0]['number'] + ")'>" +
+                                                                        "<button class='btn btn-info btn-block' onclick='downloadAnexo(" + annexeds[j]['annexeds'][0]['number'] + ")' title='Descargar Anexo'>" +
                                                                             "<i class='cil-arrow-thick-to-bottom'></i>" +
                                                                         "</button>" +
                                                                     "</div>" +
 
                                                                     "<div class='col-4'>" +
-                                                                        "<button class='btn btn-info btn-block' onclick='downloadAnexo(" + annexeds[j]['annexeds'][0]['number'] + ")'>" +
-                                                                            "<i class='cil-arrow-thick-to-bottom'></i>" +
+                                                                        "<button class='btn btn-info btn-block' data-toggle='modal' data-target='#generarObservacion' title='Generar Observación'>" +
+                                                                            "<i class='cil-voice-over-record'></i>" +
                                                                         "</button>" +
                                                                     "</div>" +
 
                                                                     "<div class='col-4'>" +
-                                                                        "<button class='btn btn-info btn-block' onclick='downloadAnexo(" + annexeds[j]['annexeds'][0]['number'] + ")'>" +
-                                                                            "<i class='cil-check-circle'></i>" +
+                                                                        "<button class='btn btn-info btn-block' data-toggle='modal' data-target='#aprovarAnexo' title='Aprobar Anexo'>" +
+                                                                            "<i class='cil-check'></i>" +
                                                                         "</button>" +
                                                                     "</div>" +
-
 
 
                                                                 "</div>" +

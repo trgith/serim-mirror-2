@@ -17,7 +17,7 @@ class Annexed extends Migration
             $table->increments('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('parent_id');
-            $table->integer('area_id')->unsigned();
+            $table->integer('annexed_catalog_dependencies_id')->unsigned();
             $table->string('content', 250);
             $table->integer('annexed_catalog_id')->unsigned();
             $table->smallInteger('status')->nullable()->default(1);
@@ -26,7 +26,7 @@ class Annexed extends Migration
 
         Schema::table('annexeds', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('area_id')->references('id')->on('areas');
+            $table->foreign('annexed_catalog_dependencies_id')->references('id')->on('annexed_catalog_dependencies');
             $table->foreign('annexed_catalog_id')->references('id')->on('annexed_catalogs');
         });
 

@@ -26,21 +26,21 @@
                         @endphp
 
                         <!-- Areas -->
-                        @foreach($areas as $area)
-                            <div class="col-3 areas">
-                                <div class="card">
-                                    <div class="card-header card__header-modified card__header-h d-flex align-items-center ">
-                                    <i class="cil-file-excel pr-3 control__municipality"></i>
-                                    <h3 class="users__title text-white users__title-modified">{{$area}}</h3>
-                                        <a onclick="mostrarAnexosPorArea('{{$area}}')" class="region__link ml-auto pr-3">Ver Anexos</a>
-                                    </div>
+                        @foreach($temp2 as $area)
+                        <div class="col-3 areas">
+                            <div class="card">
+                                <div class="card-header card__header-modified card__header-h d-flex align-items-center ">
+                                <i class="cil-file-excel pr-3 control__municipality"></i>
+                                <h3 class="users__title text-white users__title-modified">{{ $area['nombre'] }}</h3>
+                                    <a onclick="mostrarAnexosPorArea('{{ $area['id'] }}')" class="region__link ml-auto pr-3">Ver Anexos</a>
                                 </div>
                             </div>
+                        </div>
                         @endforeach
                         <!-- Areas -->
 
                         <!-- Anexos -->
-                            @foreach($descriptions as $desc)
+                            {{-- @foreach($descriptions as $desc)
                             <div class="col-md-3 mb-3">
                                 <!-- style="background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIHhs99QyEtdjlYYK44MU0b3LKApyO83oA9Q&usqp=CAU)" -->
                                 <div class="card text-white mt-5 h-100 anexos" style="background-color: #445554;" id="Anexo-{{$i}}">
@@ -73,7 +73,7 @@
                             @php
                             $i++;
                             @endphp
-                            @endforeach
+                            @endforeach --}}
                         <!-- Anexos -->
 
                     </div>

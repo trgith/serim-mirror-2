@@ -134,14 +134,26 @@ class UsersAndNotesSeeder extends Seeder
 
         //Insert Adan
         $user = User::create([
-            'name' => 'Adan de Jesus',
-            'email' => 'a@hotmail.com',
+            'name' => 'Auditoria',
+            'email' => 'auditoria@serim.com.mx',
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
             'menuroles' => 'user,auditoria'
         ]);
         $user->assignRole('auditoria');
+        $user->assignRole('user');
+
+        //Insert Contraloria
+        $user = User::create([
+            'name' => 'Contraloría',
+            'email' => 'contraloria@serim.com.mx',
+            'email_verified_at' => now(),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'remember_token' => Str::random(10),
+            'menuroles' => 'user,contraloria'
+        ]);
+        $user->assignRole('contraloria');
         $user->assignRole('user');
 
 

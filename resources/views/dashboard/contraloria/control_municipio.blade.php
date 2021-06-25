@@ -146,17 +146,34 @@
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLongTitle">Generar Observación</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                    ...
+                        <!-- Formulario -->
+                        <form>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Motivo</label>
+                                <select class="form-control" id="exampleFormControlSelect1">
+                                    <option>Motivo 1</option>
+                                    <option>Motivo 2</option>
+                                    <option>Motivo 3</option>
+                                    <option>Motivo 4</option>
+                                    <option>Motivo 5</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Comentario</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+                        </form>
+                        <!-- Formulario -->
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary">Enviar</button>
                     </div>
                 </div>
             </div>

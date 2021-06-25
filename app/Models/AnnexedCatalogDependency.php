@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class AnnexedCatalogDependency extends Model
 {
-
     protected $fillable = [
         'annexed_catalog_id',
         'area_id',
@@ -36,4 +35,13 @@ class AnnexedCatalogDependency extends Model
         return $this->hasMany(Area::class, 'id', 'area_id');
     }
 
+    /*
+    *
+    * ! TODO Esto obtiene la información complementaria del anexo desde la tabla annexed_catalogs
+    *
+    */
+    public function annexedsData()
+    {
+        return $this->hasMany(Annexed::class, 'id', 'annexed_catalog_id');
+    }
 }

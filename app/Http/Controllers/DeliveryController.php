@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Dependency;
 use Illuminate\Http\Request;
 
 class DeliveryController extends Controller
@@ -19,13 +20,23 @@ class DeliveryController extends Controller
     */
     public function getAnnexedesMainView()
     {
-        $descriptions = ["Plan de Desarrollo Municipal \n", "Estructura Orgánica", "Presupuesto de Ingresos y Egresos, Programa Presupuestario, Informes de Gobierno, Recomendaciones, Plan Anual de Evaluación",
-        "Documentación Presentada a la Auditoria Superior del Estado", "Documentación Justificativa y Comprobatoria de la Fuente de Financiamiento de Ingresos de Gestión", "Entrega de Información en Sistemas",
-        "Entrega de Cuentas Públicas", "Entrega de Informes Parciales y Dictámen del Auditor Externo", "Expediente Tributario", "Arqueo de Caja", "Conciliación Bancaria",
-        "Relación del Último Cheque Expedido por cada una de las cuentas bancarias", "Relación Cheques Expedidos por entregar o Transferencias por Realizar a beneficiarios", "Relación de Cancelación de Cuentas Bancarias",
-        "Relación padrones actualizados de usuarios y contribuyentes"];
-        $areas = ["Presidente", "Contraloría", "Tesoría / Administración", "Sindicatura / S. General", "Obra Pública", "Demás Dependencias"];
-        return view('annexes.main', compact('descriptions', 'areas'));
+        //Se obtienen las areas en general que pertenezcan a esa dependencia
+        $areas = Dependency::where('id', 2)->with('annexeds.areas')->get();
+
+        //Se crean arrays vacios para contener los objetos
+        $areasArrenged = [];
+        $temp1;
+        $temp2;
+
+        //Se iteran las areas para obtener un concentrado sin repetir de todas las que corresponden a la dependencia
+        for ($i = 0; $i < sizeof($areas[0]['annexeds']); $i++) {
+            for ($j = 0; $j < sizeof($areas[0]['annexeds'][$i]['areas']); $j++) {
+                $temp1['nombre'] = $areas[0]['annexeds'][$i]['areas'][$j]->area;
+                $temp1['id'] = $areas[0]['annexeds'][$i]['areas'][$j]->id;
+                $temp2[$areas[0]['annexeds'][$i]['areas'][$j]->id] = $temp1;
+            }
+        }
+        return view('annexes.main', compact('temp2'));
     }
 
     public function getCreateAnnexedView(Request $request)
