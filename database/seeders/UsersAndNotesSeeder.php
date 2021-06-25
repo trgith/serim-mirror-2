@@ -99,6 +99,12 @@ class UsersAndNotesSeeder extends Seeder
             'hierarchy' => 12
         ]);
 
+        $dependency = Role::create(['name' => 'dependencia']);
+        RoleHierarchy::create([
+            'role_id' => $dependency->id,
+            'hierarchy' => 13
+        ]);
+
         /*  insert status  */
         DB::table('status')->insert([
             'name' => 'ongoing',

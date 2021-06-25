@@ -75,10 +75,8 @@
                         </div>
                     </div>
 
-                    <div class="card-footer">
+                      {{-- <button class="btn btn-primary form__buttom" id="active_municipality" onclick="registerDependency()">Registrar Dependencia</button> --}}
 
-                        <button class="btn btn-primary form__buttom" id="active_municipality" onclick="registerDependency()">Registrar Dependencia</button>
-                    </div>
                 </div>
             </div>
         </div>
@@ -152,50 +150,24 @@
                 <div class="card">
                     <div class="card-header card__header-modified d-flex justify-content-between">
                         <h2 class="users__title">Lista de Anexos</h2>
-                        <button class="btn btn-secondary" onclick="hideAnnexed()">Cerrar</button>
+                        <div class="list__all" onclick="constructAssignedAnnexesObject()">
+                            <button class="btn btn-secondary" onclick="hideAnnexed()">Cerrar</button>
+                            <input type="checkbox" id="checkAll" > <p class="m-0">Seleccionar Todos</p>
+                        </div>
                     </div>
 
                     <div class="card-body">
-                        <div id="row">
+                        <div id="row" class="d-flex flex-wrap justify-content-around">
 
                         </div>
+                    </div>
+
+                    <div class="card-footer d-flex flex-reverse">
+                        <button class="btn btn-info ml-auto" onclick="registerDependency()">Guardar Dependencia y Asignar Anexos</button>
                     </div>
                 </div>
             </div>
         </div>
-
-        {{-- <div class="row">
-            @foreach($areas as $area)
-            <div class="col-3">
-                <div class="card">
-                    <div class="card-header card__header-modified card__header-h d-flex align-items-center ">
-                        <i class="cil-institution pr-3 control__municipality"></i>
-                        <h3 class="users__title text-white users__title-modified"></h3>
-                        <button class="ml-auto btn btn-warning">Ver Anexos</button>
-                    </div>
-
-                    <div class="card-body">
-                        <div class="municipality__percentage">
-                            <h5>Porcentaje</h5>
-                              <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
-                            </div><div class="progress">
-
-                            <br>
-                            <div class="control__inou">
-                                <h5>Presidente Municipal Entrante</h5>
-                                <h5>Juan Perez</h5>
-                                <br>
-                                <h5>Presidente Municipal Saliente</h5>
-                                <h5>Raul Perez</h5>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        @endforeach
-
-        </div> --}}
     </div>
 </div>
 @endsection

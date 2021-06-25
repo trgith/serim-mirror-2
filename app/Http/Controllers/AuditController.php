@@ -120,8 +120,8 @@ class AuditController extends Controller
         return response()->json(['status' => true, 'message'=>'Usuario eliminado correctamente']);
     }
 
-    public function getViewsWitness()
+   /*  public function getViewsWitness()
     {
         return view('dashboard.organ_control.module_witness.witness');
-    }
+    } */
 }

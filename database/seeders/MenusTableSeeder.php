@@ -131,7 +131,7 @@ class MenusTableSeeder extends Seeder
         $this->adminRole = Role::where('name' , '=' , 'admin' )->first();
         $this->userRole = Role::where('name', '=', 'user' )->first();
         $this->auditoria = Role::where('name', '=', 'auditoria')->first();
-
+        $this->contraloria = Role::where('name', '=', 'contraloria')->first();
         /* Create Sidebar menu */
         DB::table('menulist')->insert([
             'name' => 'sidebar menu'
@@ -175,14 +175,17 @@ class MenusTableSeeder extends Seeder
          */
         $id = $this->insertTitle('auditoria', 'MÓDULO DE USUARIOS');
         $id = $this->insertLink('auditoria', 'Asignación de Usuarios', '/asignacion_usuarios', 'cil-user');
-        $id = $this->insertLink('auditoria', 'Gestión de Testigos', '/gestion_testigos', ' cil-people');
 
         $id = $this->insertTitle('auditoria', 'CONTROL DE REGIONES');
         $id = $this->insertLink('auditoria', 'Control de Regiones', '/control_regiones', 'cil-institution');
 
-/*      $id = $this->insertTitle('auditoria', 'MÓDULO DE DEPENDENCIAS');
+        /*
+        $id = $this->insertTitle('auditoria', 'MÓDULO DE DEPENDENCIAS');
         $id = $this->insertLink('auditoria', 'Gestión de Dependencias', '/gestion_dependencias', 'cil-home');
- */
+        */
+
+        // $id = $this->insertLink('contraloria', 'Gestión de Testigos', '/gestion_testigos', ' cil-people');
+
         $id = $this->insertTitle('auditoria', 'MÓDULO DE ANEXOS');
         $id = $this->insertLink('auditoria', 'Anexos', '/anexos', 'cil-file');
 
@@ -197,10 +200,16 @@ class MenusTableSeeder extends Seeder
         $id = $this->insertLink('contraloria', 'Control de Dependencias', '/control_dependencias', 'cil-home');
 
 
+        $id = $this->insertTitle('contraloria', 'MÓDULO TESTIGO');
+        $id = $this->insertLink('contraloria', 'Aprobación de Testigos', '/gestion_testigos', ' cil-people');
+
+        $id = $this->insertTitle('contraloria', 'MÓDULO USUARIO');
+        $id = $this->insertLink('contraloria', 'Asignación de Usuario', '/registrar_usuarios', 'cil-user');
+
         $id = $this->insertLink('contraloria', 'Subir Imagen', '/subir_imagen', 'cil-file');
 
         $id = $this->insertTitle('contraloria', 'MÓDULO ASIGNACIÓN');
-        $id = $this->insertLink('contraloria', 'Asignación de Anexos', '/asignacion_anexos', 'cil-file');
+        $id = $this->insertLink('contraloria', 'Asignación de Anexos', '/registrar_usuarios', 'cil-file');
 
         $this->joinAllByTransaction(); ///   <===== Must by use on end of this seeder
     }

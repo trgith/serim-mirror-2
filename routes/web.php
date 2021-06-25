@@ -138,13 +138,12 @@ Route::group(['middleware' => ['get.menu']], function () {
         Route::get('/editar_usuario/{id}', 'AuditController@viewEditUserRegistered');
         Route::put('/actualizar_usuario/{id}', 'AuditController@updateUserRegistered');
         Route::delete('/eliminar_usuario/{id}', 'AuditController@deleteUserRegister');
-        Route::get('/gestion_testigos', 'AuditController@getViewsWitness');
         Route::get('/control_regiones', 'MunicipalitiesController@getViewMunicipality');
         Route::put('/actualizar_municipio/{id}', 'MunicipalitiesController@updateMunicipality');
         Route::get('/municipalities/{id}', 'MunicipalitiesController@getViewMunicipalityForRegion');
         Route::get('/municipio_anexo', 'MunicipalitiesController@getViewMunicipalityAnnexed');
 
-/*         Route::get('/gestion_dependencias', 'DependenciesController@getViewDependency');
+        /*Route::get('/gestion_dependencias', 'DependenciesController@getViewDependency');
         Route::post('/registrar_dependencia', 'DependenciesController@storeDependency');
         Route::put('/editar_dependencia/{id}', 'DependenciesController@updateDependency');
         Route::get('/editar_dependencia/{id}', 'DependenciesController@editViewDependency');
@@ -164,8 +163,7 @@ Route::group(['middleware' => ['get.menu']], function () {
         Route::get('/asignacion_anexos', 'ContraloriaController@getViewAssignedAnnexed');
         Route::get('/gestion_dependencias', 'DependenciesController@getViewDependency');
 
-        Route::get('/obtener_anexos', 'DependenciesController@getAnnexeds');
-
+        Route::get('/obtener_anexos', 'DependenciesController@getAnnexes');
 
         Route::post('/registrar_dependencia', 'DependenciesController@storeDependency');
         Route::put('/editar_dependencia/{id}', 'DependenciesController@updateDependency');
@@ -173,7 +171,20 @@ Route::group(['middleware' => ['get.menu']], function () {
         Route::get('/lista_dependencias', 'DependenciesController@getListDependencies');
 
         Route::get('/getAreasFromDependency', 'DependenciesController@getAreas');
+        Route::get('/getAnnexesFromAreas', 'DependenciesController@getAnnexes');
+
+        Route::get('/anexosAreas', 'DependenciesController@getAreasWithAnnexeds');
         Route::get('/getAnnexesFromAreas', 'DependenciesController@getAnnexesFromPivot');
+
+        /* Gestión de Testigos */
+        Route::get('/gestion_testigos', 'DependenciesController@getViewsWitness');
+
+        /* Alta de usuarios para contraloria municipal */
+        Route::get('/registrar_usuarios', 'DependenciesController@getViewRegisterUser');
+        Route::post('/guardar_usuario', 'DependenciesController@storeUserDependency');
+        Route::get('/registrar_usuarios', 'DependenciesController@getDataViewUserRolDependency');
+        Route::get('/usuarios_dependencia', 'DependenciesController@getUserRolDependency');
+        /* =============================================== */
     });
 
     Route::group(['middleware' => ['role:tesoreria']], function() {
@@ -190,6 +201,11 @@ Route::group(['middleware' => ['get.menu']], function () {
     Route::group(['middleware' => ['role:demas_dependencias']], function() {
 
     });
+
+    Route::group(['middleware' => ['role:dependencia']], function() {
+
+    });
+
 
     Route::get('/anexos', 'DeliveryController@getAnnexedesMainView');
     Route::get('/build_annexed/{annexedNumber}', 'DeliveryController@getCreateAnnexedView');

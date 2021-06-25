@@ -3,20 +3,33 @@
 namespace App\Http\Controllers;
 
 use DB;
+use Auth;
 use Carbon\Carbon;
+use App\Models\User;
 use App\Models\Area;
 use App\Models\Dependency;
 use App\Models\Region;
 use App\Models\Annexed;
-use App\Models\AnnexedCatalogDependency;
+use Illuminate\Support\Str;
 use App\Models\Municipality;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\Models\AnnexedCatalogDependency;
 use App\Http\Requests\DependencyRequest;
 
 class DependenciesController extends Controller
 {
+
+    public function __constructor()
+    {
+        $this->middleware('auth');
+        $this->middleware('contraloria');
+
+    }
     public function getViewDependency()
     {
+        /* $getAreasAnnexeds = Area::all()->with('annexed_catalog_areas');
+        dd($getAreasAnnexeds); */
 
         $dependencies = Dependency::all('id', 'name_dependency', 'address', 'exterior_number', 'interior_number', 'telephone');
         $regions = Region::all('id', 'region', 'status');
@@ -44,12 +57,15 @@ class DependenciesController extends Controller
             ]);
 
             DB::commit();
-            return response()->json(['status' => true, 'data' => $dependency, 'message' => 'Dependencia registrada correctamente']);
+
+            //asignamos en la tabla de annexed_catalog_dependency
+            $this->assignedAnnexeds($request->input('assignedAnnexes'), $dependency->id);
+
+            return response()->json(['status' => true, 'data' => $dependency, 'message' => 'Creado correctamente']);
         }catch(Exception $e) {
             DB::rollback();
             return response()->json(['status' => false, 'message' => 'Ha ocurrido un error al registrar la dependencia'.$e]);
         }
-
     }
 
     public function updateDependency(DependencyRequest $request, $id)
@@ -102,10 +118,97 @@ class DependenciesController extends Controller
         return response()->json(['status' => true, 'data' => $annexes]);
     }
 
+
+    /**
+     * !Función que asign los anexos
+     */
+
+    private function assignedAnnexeds($assignedAnnexes, $idDependency) {
+
+        foreach ($assignedAnnexes as $assignedAnnexed) {
+            DB::beginTransaction();
+            try{
+                $assigned = new AnnexedCatalogDependency;
+                $assigned->annexed_catalog_id = $assignedAnnexed['numberAnnexed'];
+                $assigned->area_id = $assignedAnnexed['area_id'];
+                $assigned->dependency_id = $idDependency;
+                $assigned->user_id = Auth::user()->id;
+                $assigned->status = 1;
+                $assigned->save();
+                DB::commit();
+            }catch(Exception $e) {
+                DB::rollback();
+                return response()->json(['status' => false, 'message' => 'Ha ocurrido un error al asignar']);
+            }
+        }
+    }
+
+    public function getAreasWithAnnexeds()
+    {
+        $getAreasAnnexeds = Area::all()->with('annexed_catalog_areas');
+        return response()->json(['status' => true, 'data'  => $getAreas]);
+    }
+
     public function getAnnexesFromPivot(Request $request){
         $idArea = $request->input('idArea');
         $idDependency = $request->input('idDependency');
         $annexes = AnnexedCatalogDependency::where('area_id', $idArea)->where('dependency_id', $idDependency)->with('annexeds')->with('areas')->get();
         return response()->json(['status' => true, 'data' => $annexes]);
     }
+
+    public function getViewsWitness()
+    {
+        return view('dashboard.organ_control.module_witness.witness');
+    }
+
+    public function getViewRegisterUser()
+    {
+        return view('dashboard.contraloria.asignacion_usuario');
+    }
+
+    public function storeUserDependency(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            $user = User::create([
+                'name' => $request->input('name_dependency'),
+                'email' => $request->input('email_dependency'),
+                'email_verified_at' => null,
+                'password' => Hash::make($request->input('password_dependency')),
+                'remember_token' => Str::random(20),
+                'action_user' => null,
+                'municipality_id' => null,
+                'menuroles' => 'user,dependencia'
+            ]);
+
+            $user->assignRole('dependencia');
+            $user->assignRole('user');
+
+            DB::commit();
+            return response()->json(['status' => true, 'data' => $user, 'message' => 'Usuario registrado correctamente']);
+        }catch(Exception $e) {
+            DB::rollback();
+            return response()->json(['status' => false, 'message' => 'Ha ocurrido un error al registrar el usuario']);
+        }
+
+    }
+
+    public function getUserRolDependency() {
+        $getUsersWithRolDependency = User::all();
+        if(count($getUsersWithRolDependency) > 0) {
+            return response()->json(['status' => true, 'data' => $getUsersWithRolDependency]);
+        } else {
+            return response()->json(['status' => false, 'message' => 'No hay usuarios registrados']);
+        }
+    }
+
+    public function getDataViewUserRolDependency() {
+        $rolsDependencies = User::all();
+        return view('dashboard.contraloria.asignacion_usuario', compact('rolsDependencies'));
+    }
+
+
+
+
+
 }

@@ -50,7 +50,7 @@
                         <div class="card-body text-center d-flex align-items-center p-5">
                             <div class="">
                                 <img src="../../assets/img/avatars/logoSerim-01.png" alt="logo" width="100%">
-                                <h2 class="text-center auth__welcome" >SISTEMA ENTREGA RECEPCIÓN INTEGRAL MUNICIPAL</h2>
+                                <h2 class="text-center auth__welcome" >SISTEMA DE ENTREGA RECEPCIÓN INTEGRAL MUNICIPAL</h2>
                             </div>
                         </div>
                     </div>
@@ -62,6 +62,7 @@
             <div class="col-6">
                 <div class="login__presentation d-flex flex-column justify-content-center align-items-center">
                     <img id="img_logo" class="animate__animated animate__fadeIn animate__slow animate__delay-1s" src="../../assets/img/avatars/logoSerim-01.png" alt="logo">
+                    <h2 class="animate__animated animate__fadeIn animate__slow animate__delay-1s text-center auth__welcome" id="title_initial" >SISTEMA DE ENTREGA RECEPCIÓN INTEGRAL MUNICIPAL</h2>
                     <button class="btn animate__animated animate__fadeIn animate__slower animate__delay-2s" onclick="buttonAccess()" id="btn_access">Entrar</button>
                 </div>
             </div>

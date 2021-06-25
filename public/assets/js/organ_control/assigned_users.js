@@ -145,7 +145,6 @@ function updateUserRegistered() {
         },
 
         error: function(response) {
-            console.log(response);
             $("#error_name").text(response.responseJSON.errors.name);
             $("#error_email").text(response.responseJSON.errors.email);
             $("#error_password").text(response.responseJSON.errors.password);
